@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+
+
+{%  block body %}
+
+    <div id="header" class="content-block">
+
+        <section class="center">
+            <div class="slogan">
+                SNOWTRICKS
+            </div>
+            <div class="secondary-slogan">
+                Communauté de Snowboarder.
+            </div>
+        </section>
+    </div><!-- header -->
+    <div class="content-block" id="blog">
+        <div class="container blog-sec">
+            <header class="block-heading cleafix">
+                <a href="#" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
+                <div class="title-page">
+                    <p class="main-header">Toutes les4 figures</p>
+                    <p class="sub-header">Keep up with the latest happenings.</p>
+                </div>
+            </header>
+            <section class="block-body">
+                <div class="row">
+                    <div class="col-sm-4 blog-post">
+                        <img src="{{ asset('assets/images/bike_water1-1000x600.jpg') }}">
+                        <a href="#"><h2>FIGURE 1</h2></a>
+                        <div class="date">3 Nov, 2014</div>
+                        <p>In at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
+                            nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in lorem.</p>
+                        <a href="">Read More</a>
+                    </div>
+                    <div class="col-sm-4 blog-post">
+                        <img src="../../../../src/TestBundle/Resources/views/Default/assets/images/mac_glasses1-1000x600.jpg">
+                        <a href="#"><h2>FIGURE 2</h2></a>
+                        <div class="date">3 Nov, 2014</div>
+                        <p>In at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
+                            nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in lorem.</p>
+                        <a href="">Read More</a>
+                    </div>
+                    <div class="col-sm-4 blog-post">
+                        <img src="../../../../src/TestBundle/Resources/views/Default/assets/images/road-1000x600.jpg">
+                        <a href="#"><h2>FIGURE 3</h2></a>
+                        <div class="date">3 Nov, 2014</div>
+                        <p>In at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
+                            nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in lorem.</p>
+                        <a href="">Read More</a>
+                    </div>
+                </div>
+
+            </section>
+
+        </div><!-- #blog -->
+{% endblock %}
