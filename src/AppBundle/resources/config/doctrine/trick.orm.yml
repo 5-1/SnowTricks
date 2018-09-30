@@ -1,0 +1,23 @@
+AppBundle\Entity\trick:
+    type: entity
+    table: null
+    repositoryClass: AppBundle\Repository\trickRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        title:
+            type: string
+            length: 255
+        content:
+            type: string
+            length: 255
+        image:
+            type: string
+            length: 255
+        createdAt:
+            type: datetime
+    lifecycleCallbacks: {  }

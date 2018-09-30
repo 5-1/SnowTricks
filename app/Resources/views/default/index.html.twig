@@ -2,7 +2,7 @@
 
 
 
-{%  block body %}
+{% block body %}
 
     <div id="header" class="content-block">
 
@@ -15,6 +15,7 @@
             </div>
         </section>
     </div><!-- header -->
+
     <div class="content-block" id="blog">
         <div class="container blog-sec">
             <header class="block-heading cleafix">
@@ -26,33 +27,31 @@
             </header>
             <section class="block-body">
                 <div class="row">
-                    <div class="col-sm-4 blog-post">
-                        <img src="{{ asset('assets/images/bike_water1-1000x600.jpg') }}">
-                        <a href="#"><h2>FIGURE 1</h2></a>
-                        <div class="date">3 Nov, 2014</div>
-                        <p>In at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
-                            nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in lorem.</p>
-                        <a href="">Read More</a>
+                    <div class="col-sm-3 blog-post">
+                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
+                        <a href="#"><h2>FIGURE 1 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
+
                     </div>
-                    <div class="col-sm-4 blog-post">
-                        <img src="../../../../src/TestBundle/Resources/views/Default/assets/images/mac_glasses1-1000x600.jpg">
-                        <a href="#"><h2>FIGURE 2</h2></a>
-                        <div class="date">3 Nov, 2014</div>
-                        <p>In at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
-                            nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in lorem.</p>
-                        <a href="">Read More</a>
+                    <div class="col-sm-3 blog-post">
+                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
+                        <a href="#"><h2>FIGURE 2 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
                     </div>
-                    <div class="col-sm-4 blog-post">
-                        <img src="../../../../src/TestBundle/Resources/views/Default/assets/images/road-1000x600.jpg">
-                        <a href="#"><h2>FIGURE 3</h2></a>
-                        <div class="date">3 Nov, 2014</div>
-                        <p>In at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
-                            nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in lorem.</p>
-                        <a href="">Read More</a>
+                    <div class="col-sm-3 blog-post">
+                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
+                        <a href="#"><h2>FIGURE 3 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
                     </div>
+                    <div class="col-sm-3 blog-post">
+                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
+                        <a href="#"><h2>FIGURE 4 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
+                    </div>
+                    <div class="col-sm-3 blog-post">
+                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
+                        <a href="#"><h2>FIGURE 5 </h2> </a>
+
+                    </div>
+
                 </div>
-
             </section>
-
-        </div><!-- #blog -->
+        </div>
+    </div>
 {% endblock %}

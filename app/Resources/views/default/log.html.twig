@@ -1,0 +1,17 @@
+
+{% extends 'base.html.twig' %}
+
+{%  block body %}
+    <div class="content-block">
+
+
+<h1>Ajout d'un tricks</h1>
+    {{ form_start(form) }}
+    {{ form_row(form) }}
+
+    <button type="submit" class="btn btn-success"> Ajouter le tricks </button>
+
+    {{ form_end(form) }}
+    </div>
+
+{% endblock %}
