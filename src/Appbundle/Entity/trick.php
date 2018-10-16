@@ -1,36 +1,60 @@
 <?php
 
 namespace AppBundle\Entity;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * trick
+ * @ORM\Table(name="trick")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TrickRepository")
  */
-class trick
+class Trick
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id()
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     * @ORM\Column(type="string", length=255, nullable=false)
      */
     private $title;
 
     /**
      * @var string
+     * @ORM\Column(type="text")
      */
-    private $content;
+    private $video;
 
     /**
      * @var string
+     * @ORM\Column(type="text")
+     */
+    private $content;
+
+
+
+    /**
+     * @var string
+     * @ORM\Column(type="text")
      */
     private $image;
 
     /**
      * @var \DateTime
+     * @ORM\Column(type="datetime", nullable=false)
      */
     private $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
 
     /**
@@ -48,7 +72,7 @@ class trick
      *
      * @param string $title
      *
-     * @return trick
+     * @return Trick
      */
     public function setTitle($title)
     {
@@ -68,11 +92,35 @@ class trick
     }
 
     /**
+     * Set video
+     *
+     * @param string $video
+     *
+     * @return Trick
+     */
+    public function setVideo($video)
+    {
+        $this->video = $video;
+
+        return $this;
+    }
+
+    /**
+     * Get video
+     *
+     * @return string
+     */
+    public function getVideo()
+    {
+        return $this->video;
+    }
+
+    /**
      * Set content
      *
      * @param string $content
      *
-     * @return trick
+     * @return Trick
      */
     public function setContent($content)
     {
@@ -96,7 +144,7 @@ class trick
      *
      * @param string $image
      *
-     * @return trick
+     * @return Trick
      */
     public function setImage($image)
     {
@@ -120,7 +168,7 @@ class trick
      *
      * @param \DateTime $createdAt
      *
-     * @return trick
+     * @return Trick
      */
     public function setCreatedAt($createdAt)
     {

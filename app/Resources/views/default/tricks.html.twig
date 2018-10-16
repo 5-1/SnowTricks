@@ -19,10 +19,11 @@
     <div class="content-block" id="blog">
     <div class="container blog-sec">
         <header class="block-heading cleafix">
-            <a href="#" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
+            <a href="{{ path('trick_add') }}" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
+            <a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-o btn-lg pull-right">Editer la figure !</a>
             <div class="title-page">
-                <p class="main-header">TricksName</p>
-                <p class="sub-header">Difficulté: 5/10.</p>
+                <p class="main-header">{{ trick.title }}</p>
+                <p class="sub-header">Ecrit le {{ trick.createdAt | date('d/m/Y')}} à {{ trick.createdAt | date('H:i')}}</p>
             </div>
         </header>
         <article>
@@ -30,10 +31,7 @@
                 <div class="row">
                     <div class="col-xs-8 col-md-9 col-xs-push-2 col-md-push-1">
                         <p>
-                            <h3>Description:</h3> In at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
-                        nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in loremIn at accumsan risus. Nam id volutpat ante. Etiam vel mi mattis, vulputate nunc nec, sodales
-                        nibh. Etiam nulla magna, gravida eget ultricies sit amet, hendrerit in lorem
-                        </p>
+                            <h3>Description:</h3> {{ trick.content | raw }}</p>
                     </div>
 
                 <div class="row">
@@ -97,7 +95,7 @@
                             </ol>
                             <!-- Wrapper for slides -->
                             <div class="carousel-inner" role="listbox">
-                                <div class="item active"><iframe width="1150" height="500" src="https://www.youtube.com/embed/-ClNrBe-fr4" frameborder="0" allowfullscreen></iframe></div>
+                                <div class="item active"><iframe width="1150" height="500" src="https://www.youtube.com/embed/watch?v=H1dvF-F1sq0" frameborder="0" allowfullscreen></iframe></div>
                                 <div class="item"><iframe width="1150" height="500" src="https://www.youtube.com/embed/-ClNrBe-fr4" frameborder="0" allowfullscreen></iframe></div>
                                 <div class="item"><iframe width="1150" height="500" src="https://www.youtube.com/embed/VXb3IjPh3sI" frameborder="0" allowfullscreen></iframe></div>
                             </div>
