@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Image;
 use AppBundle\Entity\Trick;
 use AppBundle\Form\TrickType;
+use AppBundle\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,16 +35,26 @@ class DefaultController extends Controller
      * @param EntityManagerInterface $manager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function addTrick(Request $request, EntityManagerInterface $manager)
+    public function addTrick(Request $request, EntityManagerInterface $manager, FileUploader $fileUploader)
     {
-        $form = $this->createForm(TrickType::class);
+
+        $trick = new Trick();
+        $trick->addImage(new Image());
+        $form = $this->createForm(TrickType::class, $trick);
 
         $form->handleRequest($request);
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
 
             $trick = $form->getData();
+
+            foreach($trick->getImages() as $image){
+                $fileName = $fileUploader->upload($image->getFile());
+                $image->setFile($fileName);
+            }
+
             $manager->persist($trick);
             $manager->flush();
 
@@ -86,5 +98,10 @@ class DefaultController extends Controller
     public function trickShow(Trick $trick)
     {
         return $this->render('default/tricks.html.twig', ['trick' => $trick]);
+    }
+
+    private function generateUniqueFileName()
+    {
+        return md5(uniqid());
     }
 }
