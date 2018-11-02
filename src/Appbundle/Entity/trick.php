@@ -1,7 +1,10 @@
 <?php
 
 namespace AppBundle\Entity;
+
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * trick
@@ -21,13 +24,13 @@ class Trick
 
     /**
      * @var string
-     * @ORM\Column(type="string", length=255, nullable=false)
+     * @ORM\Column(type="string",name="title", length=255, nullable=false)
      */
     private $title;
 
     /**
      * @var string
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $video;
 
@@ -38,12 +41,11 @@ class Trick
     private $content;
 
 
-
     /**
-     * @var string
-     * @ORM\Column(type="text")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"})
+     * @Assert\Valid()
      */
-    private $image;
+    private $images;
 
     /**
      * @var \DateTime
@@ -51,9 +53,23 @@ class Trick
      */
     private $createdAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Category")
+     *
+     */
+    private $category;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->images = new ArrayCollection();
     }
 
 
@@ -76,7 +92,13 @@ class Trick
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->title = trim($title);
+        $transliterator = \Transliterator::createFromRules(
+            "::Latin-ASCII; ::Lower; [^[:L:][:N:]]+ > '-';"
+        );
+
+        $this->slug = $transliterator->transliterate($this->title);
+
 
         return $this;
     }
@@ -139,29 +161,7 @@ class Trick
         return $this->content;
     }
 
-    /**
-     * Set image
-     *
-     * @param string $image
-     *
-     * @return Trick
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
 
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return string
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
 
     /**
      * Set createdAt
@@ -186,5 +186,85 @@ class Trick
     {
         return $this->createdAt;
     }
-}
 
+    /**
+     * Set category
+     *
+     * @param Category $category
+     *
+     * @return Trick
+     */
+    public function setCategory(Category $category = null)
+    {
+        $this->category = $category;
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return Category|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Trick
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Add image
+     *
+     * @param \AppBundle\Entity\Image $image
+     *
+     * @return Trick
+     */
+    public function addImage(\AppBundle\Entity\Image $image)
+    {
+        $this->images[] = $image;
+        $image->setTrick($this);
+
+        return $this;
+    }
+
+    /**
+     * Remove image
+     *
+     * @param \AppBundle\Entity\Image $image
+     */
+    public function removeImage(\AppBundle\Entity\Image $image)
+    {
+        $this->images->removeElement($image);
+    }
+
+    /**
+     * Get images
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+}
