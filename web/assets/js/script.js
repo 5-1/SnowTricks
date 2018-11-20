@@ -89,7 +89,7 @@
 	});
 
 	jQuery('.nav > li > a').click(function(e){
-		e.preventDefault();
+		//e.preventDefault();
 		jQuery.scrollTo(jQuery(this).attr('href'), 400, { offset:-(jQuery('#header .top').height()), axis:'y' });
 	})
 
