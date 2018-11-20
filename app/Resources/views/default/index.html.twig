@@ -19,38 +19,25 @@
     <div class="content-block" id="blog">
         <div class="container blog-sec">
             <header class="block-heading cleafix">
-                <a href="#" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
+                <a href="{{ path('trick_add') }}" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
                 <div class="title-page">
-                    <p class="main-header">Toutes les4 figures</p>
+                    <p class="main-header">Toutes les figures</p>
                     <p class="sub-header">Keep up with the latest happenings.</p>
                 </div>
             </header>
+
             <section class="block-body">
+
                 <div class="row">
+                {% for trick in tricks %}
                     <div class="col-sm-3 blog-post">
                         <img src="{{ asset('assets/images/header-bg.jpg') }}">
-                        <a href="#"><h2>FIGURE 1 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
+                        <a href="{{ path('tricks_show', {'id': trick.id}) }}"><h2>{{ trick.title }}</h2> </a>
 
                     </div>
-                    <div class="col-sm-3 blog-post">
-                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
-                        <a href="#"><h2>FIGURE 2 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
-                    </div>
-                    <div class="col-sm-3 blog-post">
-                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
-                        <a href="#"><h2>FIGURE 3 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
-                    </div>
-                    <div class="col-sm-3 blog-post">
-                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
-                        <a href="#"><h2>FIGURE 4 <i class="glyphicon glyphicon-trash"></i> <i class="glyphicon glyphicon-pencil"> </i> </h2> </a>
-                    </div>
-                    <div class="col-sm-3 blog-post">
-                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
-                        <a href="#"><h2>FIGURE 5 </h2> </a>
-
+                    {% endfor %}
                     </div>
 
-                </div>
             </section>
         </div>
     </div>
