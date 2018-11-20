@@ -2,8 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Comment;
 use AppBundle\Entity\Image;
 use AppBundle\Entity\Trick;
+use AppBundle\Form\CommentType;
 use AppBundle\Form\TrickType;
 use AppBundle\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,7 +41,6 @@ class DefaultController extends Controller
     {
 
         $trick = new Trick();
-        $trick->addImage(new Image());
         $form = $this->createForm(TrickType::class, $trick);
 
         $form->handleRequest($request);
@@ -97,7 +98,11 @@ class DefaultController extends Controller
      */
     public function trickShow(Trick $trick)
     {
-        return $this->render('default/tricks.html.twig', ['trick' => $trick]);
+        $comment = new Comment();
+        $form = $this->createForm(CommentType::class, $comment);
+
+
+        return $this->render('default/tricks.html.twig', ['trick' => $trick, 'commentForm' => $form->createView()]);
     }
 
     private function generateUniqueFileName()
