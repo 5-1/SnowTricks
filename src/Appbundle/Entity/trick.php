@@ -60,6 +60,11 @@ class Trick
     private $category;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", orphanRemoval=true)
+     */
+    private $comments;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=255, unique=true)
@@ -70,6 +75,7 @@ class Trick
     {
         $this->createdAt = new \DateTime();
         $this->images = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
 

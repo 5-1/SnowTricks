@@ -19,6 +19,7 @@ class TrickType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title')
+            ->add('slug')
             ->add('content')
             ->add('video')
             ->add('images', CollectionType::class, [
