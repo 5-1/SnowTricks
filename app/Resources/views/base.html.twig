@@ -3,6 +3,8 @@
 <head>
     <title>Snowtricks</title>
 
+
+
     <!-- meta -->
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,12 +19,12 @@
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Serif:regular,bold"/>
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
-    <script src="assets/js/html5shiv.js"></script>
-    <script src="assets/js/respond.js"></script>
+    <script src="/web/assets/js/html5shiv.js"></script>
+    <script src="/web/assets/js/respond.js"></script>
     <![endif]-->
 
     <!--[if IE 8]>
-    <script src="assets/js/selectivizr.js"></script>
+    <script src="/web/assets/js/selectivizr.js"></script>
     <![endif]-->
 
     {% block stylesheets %}
@@ -60,19 +62,26 @@
                         <div class="collapse navbar-collapse navbar-def" id="bs-example-navbar-collapse-1">
 
                             <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item">
+                                    <a href="{{ path('index') }}"><i class="fa fa-home"></i> Accueil</a>
+                                </li class="nav-item">
                                 <li>
-                                    <a href="#wrapper"><i class="fa fa-home"></i> Accueil</a>
+                                    <a href="{{ path('index') }}"><i class="fa fa-tasks"></i> Tricks</a>
                                 </li>
-                                <li>
-                                    <a href="#about"><i class="fa fa-tasks"></i> Tricks</a>
+                                <li class="nav-item">
+                                    <a href="{{ path('security_registration') }}"><i class="fa fa-bookmark"></i> Inscription</a>
                                 </li>
-                                <li>
-                                    <a href="#portfolio"><i class="fa fa-bookmark"></i> Connexion</a>
-                                </li>
-                                <li>
-                                    <a href="#services"><i class="fa fa-bookmark"></i> Inscription</a>
+                                {% if not app.user %}
+                                <li class="nav-item">
+                                    <a href="{{ path('security_login') }}"><i class="fa fa-bookmark"></i> Connexion</a>
 
                                 </li>
+                                {% else %}
+                                <li class="nav-item">
+                                    <a href="{{ path('security_logout') }}"><i class="fa fa-bookmark"></i> Déconnexion</a>
+
+                                </li>
+                                {% endif %}
                             </ul>
                         </div><!-- /navbar-collapse -->
                     </div><!-- / .container-fluid -->
@@ -94,7 +103,8 @@
                     <h2 class="footer-block">Une question?</h2>
                     <p>Site communautaire de partage de figures du snowboard.</p>
 
-                    <p>Attention: Le contenu de ce site est fictif mais entièrement fonctionnel, il à été crée dans un but d'apprentisage.
+                    <p>Attention: Le contenu de ce site est fictif mais entièrement fonctionnel, il à été crée dans un
+                        but d'apprentisage.
                     </p>
                 </div>
                 <div class="col-sm-4 blog-post">
@@ -133,7 +143,7 @@
                             fix : 1-800-123-hello<br>
                             Mobile: 1-800-123-hello
                         </p>
-                        <li class="address-sub"><i class="fa fa-envelope-o"></i>E-mail </li>
+                        <li class="address-sub"><i class="fa fa-envelope-o"></i>E-mail</li>
                         <p>
                             <a href="mailto:info@themewagon.com">info@.com</a><br>
                             <a href="http://www.themewagon.com/">http://foxmulder.odns.fr/</a>
@@ -157,7 +167,8 @@
     <div class="content-block footer-bottom" id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-xs-6">&copy; Copyright <a href="http://www.foxmulder.odns.fr" target="_blink">Johan B.</div>
+                <div class="col-xs-6">&copy; Copyright <a href="http://www.foxmulder.odns.fr" target="_blink">Johan B.
+                </div>
             </div>
         </div>
     </div><!-- #footer -->
@@ -165,19 +176,19 @@
 </div><!--/#wrapper-->
 
 {% block javascripts %}
-    <script src="{{ asset('/assets/js/jquery-2.1.3.min.js') }}"></script>
+    <script src="{{ asset('assets/js/jquery-2.1.3.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.actual.min.js') }}"></script>
     <script src="{{ asset('assets/js/jquery.scrollTo.min.js') }}"></script>
     <script src="{{ asset('assets/js/contact.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
-    <script src="{{ asset('/web/assets/js/smoothscroll.js') }}"></script>
+    <script src="{{ asset('assets/js/smoothscroll.js') }}"></script>
     <script type="text/javascript">
         jQuery(document).ready(function ($) {
 
+
             $(window).scroll(function () {
 
-                console.log("asdf");
 
                 if ($(window).scrollTop() > 100) {
 
@@ -192,17 +203,8 @@
             });
 
         });
-
-        jQuery('.scroll').on('click', function (e) {
-            e.preventDefault()
-
-            jQuery('html, body').animate({
-                scrollTop: jQuery(this.hash).offset().top
-            }, 1500);
-        });
-
-
-    </script>{% endblock %}
+    </script>
+{% endblock %}
 
 </body>
 </html>
