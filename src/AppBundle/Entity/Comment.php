@@ -3,7 +3,9 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+
 use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Comment
@@ -21,6 +23,7 @@ class Comment
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
 
 
 
@@ -62,7 +65,6 @@ class Comment
     {
         return $this->id;
     }
-
 
     /**
      * Set content
