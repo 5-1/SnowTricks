@@ -8,6 +8,7 @@ use AppBundle\Entity\Trick;
 use AppBundle\Form\CommentType;
 use AppBundle\Form\TrickType;
 use AppBundle\Service\FileUploader;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -62,7 +63,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
         }
 
-        return $this->render('default/log.html.twig', ['form' => $form->createView()]);
+        return $this->render('default/new.html.twig', ['form' => $form->createView()]);
     }
 
     /**
@@ -87,7 +88,7 @@ class DefaultController extends Controller
             return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
         }
 
-        return $this->render('default/log.html.twig', ['form' => $form->createView()]);
+        return $this->render('default/new.html.twig', ['form' => $form->createView()]);
     }
 
 
@@ -96,10 +97,21 @@ class DefaultController extends Controller
      * @param Trick $trick
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function trickShow(Trick $trick)
+    public function trickShow(Trick $trick, Request $request, ObjectManager $manager)
     {
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $comment->setCreatedAt(new \DateTime())
+                    ->setTrick($trick);
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
+        }
 
 
         return $this->render('default/tricks.html.twig', ['trick' => $trick, 'commentForm' => $form->createView()]);
