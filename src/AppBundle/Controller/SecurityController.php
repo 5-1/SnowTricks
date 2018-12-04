@@ -2,19 +2,39 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use AppBundle\Form\RegistrationType;
-use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\User;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
 class SecurityController extends Controller
 {
     /**
+     * @var AuthenticationUtils
+     */
+    private $authenError;
+
+    /**
+     * SecurityController constructor.
+     * @param AuthenticationUtils $authenError
+     */
+    public function __construct(AuthenticationUtils $authenError)
+    {
+        $this->authenError = $authenError;
+    }
+
+
+    /**
      * @Route("/inscription", name="security_registration")
+     * @param Request $request
+     * @param ObjectManager $manager
+     * @param UserPasswordEncoderInterface $encoder
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
@@ -23,8 +43,7 @@ class SecurityController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid())
-        {
+        if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
             $manager->persist($user);
@@ -42,7 +61,11 @@ class SecurityController extends Controller
      */
     public function login()
     {
-        return $this->render('default/login.html.twig');
+        $error = $this->authenError->getLastAuthenticationError();
+
+        return $this->render('default/login.html.twig', [
+            'error' => $error,
+        ]);
     }
 
     /**
