@@ -3,9 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Trick;
-
 use AppBundle\Form\TrickEditType;
-
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,13 +23,11 @@ class EditTrickController extends Controller
      */
     public function editTrick(Trick $trick, Request $request, EntityManagerInterface $manager)
     {
-
         $form = $this->createForm(TrickEditType::class, $trick);
 
 
 
         $form->handleRequest($request);
-
 
         if ($form->isSubmitted() && $form->isValid()) {
 
@@ -41,9 +37,9 @@ class EditTrickController extends Controller
             return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
         }
 
+
         return $this->render('default/edit.html.twig', [
             'form' => $form->createView(),
         ]);
-
     }
 }
