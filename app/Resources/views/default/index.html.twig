@@ -1,7 +1,9 @@
 {% extends 'base.html.twig' %}
 
 
-
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
 {% block body %}
 
     <div id="header" class="content-block">
@@ -28,15 +30,33 @@
 
             <section class="block-body">
 
-                <div class="row">
                 {% for trick in tricks %}
-                    <div class="col-sm-3 blog-post">
-                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
-                        <a href="{{ path('tricks_show', {'id': trick.id}) }}"><h2>{{ trick.title }}</h2> </a>
 
+                    <div class="col-lg-3 card ">
+                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <a href="{{ path('tricks_show', {'id': trick.id}) }}"><h4>{{ trick.title }}</h4></a>
+
+                            </div>
+                            <div class="col-lg-5">
+
+
+                                <a href="{{ path('trick_edit', {'id': trick.id}) }}">
+                                    <button class="btn"><i class="fa fa-pencil"></i></button>
+                                </a>
+                                <a href="">
+                                    <button class="btn"><i class="fa fa-trash"></i></button>
+                                </a>
+
+
+                            </div>
+                        </div>
+                        <div class="row spacer">
+                        </div>
                     </div>
                     {% endfor %}
-                    </div>
+
 
             </section>
         </div>
