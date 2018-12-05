@@ -152,19 +152,38 @@
                     {% endif %}
                     {% for comment in trick.comments() %}
 
-                        <div class="comment">
-                            <div class="row">
-                                <div class="col-3">
-                                    {{ comment.author }} (<small>{{ comment.createdAt | date ('d/m/Y à H:i') }}</small>
-                                </div>
-                                <div class="col">
-                                    {{ comment.content | raw }}
-                                </div>
-                            </div>
-                        </div>
-                    {% endfor %}
+                    <div class="container">
+                        <div class="row">
+
+                        </div><!-- /row -->
+                        <div class="row">
+                            <div class="col-sm-1">
+                                <div class="thumbnail">
+                                    <img class="img-responsive user-photo"
+                                         src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                                </div><!-- /thumbnail -->
+                            </div><!-- /col-sm-1 -->
+
+                            <div class="col-sm-5">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <strong>{{ comment.author }}</strong> <span
+                                                class="text-muted">{{ comment.createdAt | date ('d/m/Y à H:i') }}</span>
+                                    </div>
+                                    <div class="panel-body">
+                                        {{ comment.content | raw }}
+                                    </div><!-- /panel-body -->
+                                </div><!-- /panel panel-default -->
+                            </div><!-- /col-sm-5 -->
+
+                            {% endfor %}
+
+
+                        </div><!-- /container -->
+                    </div>
 
                 </section>
+
 
         </div>
 
