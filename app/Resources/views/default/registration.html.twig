@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'without.html.twig' %}
 
 {% block body %}
 
@@ -16,6 +16,7 @@
         <button type="submit" class="btn btn-success"> S'inscrire</button>
 
     {{ form_end(form) }}
+
 
     <p><a href="{{ path('security_login') }}"> Déjà un compte?</a></p>
 {% endblock %}
