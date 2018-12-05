@@ -25,16 +25,24 @@ class ShowTrickController extends Controller
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
+        if ($this->getUser()) {
+            $user = $this->getUser();
+            $username = $user->getUsername();
+
+        } else {
+            $username = null;
+        }
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $comment->setCreatedAt(new \DateTime())
                 ->setTrick($trick);
+            $comment->setAuthor($username);
             $manager->persist($comment);
             $manager->flush();
 
             return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
         }
-
 
         return $this->render('default/tricks.html.twig', ['trick' => $trick, 'commentForm' => $form->createView()]);
     }

@@ -26,17 +26,13 @@ class Comment
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255)
-     * @Assert\NotNull()
-     * @Assert\Range(min="2")
      */
     private $author;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="content", type="string", length=255)
      * @Assert\NotNull()
-     * @Assert\Range(min="15")
      */
     private $content;
 

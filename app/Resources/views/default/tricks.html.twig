@@ -16,6 +16,12 @@
         </section>
     </div><!-- header -->
 
+
+
+
+
+
+
     <div class="content-block" id="blog">
         <div class="container blog-sec">
             <header class="block-heading cleafix">
@@ -34,7 +40,8 @@
                         <div class="col-xs-8 col-md-9 col-xs-push-2 col-md-push-1">
                             <p>
                             <h3>Catégorie: {{ trick.category | raw }} </h3>
-                            <h3>Description:</h3> {{ trick.content | raw }}</p>
+                            <h3>Description:</h3> {{ trick.content | raw }}
+                            </p>
                         </div>
 
                         <div class="row">
@@ -130,14 +137,19 @@
                             </div>
                     </div>
                 </div>
+
                 <section id="commentaires">
                     <h1>Section Commentaire</h1>
-                    {{ form_start(commentForm) }}
-                    {{ form_row(commentForm.author, {'attr': {'placeholder': "Votre nom"}}) }}
-                    {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
+                    {% if  app.user %}
 
-                    <button type="submit" class="btn btn-success"> Commenter !</button>
-                    {{ form_end(commentForm) }}
+                        {{ form_start(commentForm) }}
+                        {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
+
+                        <button type="submit" class="btn btn-success"> Commenter !</button>
+                        {{ form_end(commentForm) }}
+                    {% else %}
+                        <p> Vous devez vous connectez pour commentez </p>
+                    {% endif %}
                     {% for comment in trick.comments() %}
 
                         <div class="comment">
@@ -153,6 +165,7 @@
                     {% endfor %}
 
                 </section>
+
         </div>
 
     </div><!-- #blog -->
