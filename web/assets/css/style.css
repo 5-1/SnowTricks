@@ -50,6 +50,7 @@ html {
 body {
     color: #6a6a6a;
 
+
     background: #ffffff;
 
 }
@@ -714,6 +715,7 @@ button.navbar-toggle.collapsed {
 
 .spacer {
     margin-bottom: 10px;
+
 }
 
 .thumbnail-comment {
@@ -756,5 +758,4 @@ button.navbar-toggle.collapsed {
     padding: 20px;
     border-radius: 5px;
     color: #ffffff;
-
 }
