@@ -3,8 +3,6 @@
 <head>
     <title>Snowtricks</title>
 
-
-
     <!-- meta -->
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -34,6 +32,7 @@
     {% endblock %}
 </head>
 <body>
+{% block header %}
 <header class="top-header">
     <div class="container">
         <div class="row">
@@ -72,15 +71,15 @@
                                     <a href="{{ path('security_registration') }}"><i class="fa fa-bookmark"></i> Inscription</a>
                                 </li>
                                 {% if not app.user %}
-                                <li class="nav-item">
-                                    <a href="{{ path('security_login') }}"><i class="fa fa-bookmark"></i> Connexion</a>
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_login') }}"><i class="fa fa-bookmark"></i> Connexion</a>
 
-                                </li>
+                                    </li>
                                 {% else %}
-                                <li class="nav-item">
-                                    <a href="{{ path('security_logout') }}"><i class="fa fa-bookmark"></i> Déconnexion</a>
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_logout') }}"><i class="fa fa-bookmark"></i> Déconnexion</a>
 
-                                </li>
+                                    </li>
                                 {% endif %}
                             </ul>
                         </div><!-- /navbar-collapse -->
@@ -90,88 +89,91 @@
         </div>
     </div>
 </header>
+{% endblock %}
 <div id="wrapper">
 
 
     {% block body %}
     {% endblock %}
-    <div class="content-block" id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-4 blog-post">
+    {% block footer %}
+        <div class="content-block" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4 blog-post">
 
-                    <h2 class="footer-block">Une question?</h2>
-                    <p>Site communautaire de partage de figures du snowboard.</p>
+                        <h2 class="footer-block">Une question?</h2>
+                        <p>Site communautaire de partage de figures du snowboard.</p>
 
-                    <p>Attention: Le contenu de ce site est fictif mais entièrement fonctionnel, il à été crée dans un
-                        but d'apprentisage.
-                    </p>
-                </div>
-                <div class="col-sm-4 blog-post">
-                    <h2 class="footer-block">Laissez nous un message</h2>
-                    <form action="contact-form.php" id="contactForm" method="post" name="contactform" class=""
-                          role="form">
-                        <div class="form-group">
-                            <input type="text" class="form-control form-control-white" id="name" name="name"
-                                   placeholder="Nom" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control form-control-white" id="email" name="email"
-                                   placeholder="E-mail" required>
-                        </div>
-                        <div class="form-group">
+                        <p>Attention: Le contenu de ce site est fictif mais entièrement fonctionnel, il à été crée dans un
+                            but d'apprentisage.
+                        </p>
+                    </div>
+                    <div class="col-sm-4 blog-post">
+                        <h2 class="footer-block">Laissez nous un message</h2>
+                        <form action="contact-form.php" id="contactForm" method="post" name="contactform" class=""
+                              role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control form-control-white" id="name" name="name"
+                                       placeholder="Nom" required>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" class="form-control form-control-white" id="email" name="email"
+                                       placeholder="E-mail" required>
+                            </div>
+                            <div class="form-group">
                                 <textarea class="form-control form-control-white" id="message" name="massage"
                                           placeholder="Ecrire quelque chose.." required></textarea>
-                        </div>
-                        <div id="contactFormResponse"></div>
-                        <div class="form-group">
-                            <input id="cfsubmit" type="submit" class="text-center btn btn-o-white"
-                                   value="Envoyé">
-                        </div>
-                    </form>
-                </div>
-                <div class="col-sm-4 blog-post">
-
-                    <h2 class="footer-block">Contact</h2>
-                    <ul>
-                        <li class="address-sub"><i class="fa fa-map-marker"></i>Addresse</li>
-                        <p>
-                            Blabla Parkway, P.o Box 353 Mountain View. United States of America.
-                        </p>
-                        <li class="address-sub"><i class="fa fa-phone"></i>Téléphone</li>
-                        <p>
-                            fix : 1-800-123-hello<br>
-                            Mobile: 1-800-123-hello
-                        </p>
-                        <li class="address-sub"><i class="fa fa-envelope-o"></i>E-mail</li>
-                        <p>
-                            <a href="mailto:info@themewagon.com">info@.com</a><br>
-                            <a href="http://www.themewagon.com/">http://foxmulder.odns.fr/</a>
-                        </p>
-
-
-                    </ul>
-                    <div class="social">
-                        <a href="#"><i class="fa fa-twitter"></i></a>
-                        <a href="#"><i class="fa fa-facebook"></i></a>
-                        <a href="#"><i class="fa fa-instagram"></i></a>
-                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                        <a href="#"><i class="fa fa-google-plus"></i></a>
-                        <a href="#"><i class="fa fa-skype"></i></a>
+                            </div>
+                            <div id="contactFormResponse"></div>
+                            <div class="form-group">
+                                <input id="cfsubmit" type="submit" class="text-center btn btn-o-white"
+                                       value="Envoyé">
+                            </div>
+                        </form>
                     </div>
+                    <div class="col-sm-4 blog-post">
 
+                        <h2 class="footer-block">Contact</h2>
+                        <ul>
+                            <li class="address-sub"><i class="fa fa-map-marker"></i>Addresse</li>
+                            <p>
+                                Blabla Parkway, P.o Box 353 Mountain View. United States of America.
+                            </p>
+                            <li class="address-sub"><i class="fa fa-phone"></i>Téléphone</li>
+                            <p>
+                                fix : 1-800-123-hello<br>
+                                Mobile: 1-800-123-hello
+                            </p>
+                            <li class="address-sub"><i class="fa fa-envelope-o"></i>E-mail</li>
+                            <p>
+                                <a href="mailto:info@themewagon.com">info@.com</a><br>
+                                <a href="http://www.themewagon.com/">http://foxmulder.odns.fr/</a>
+                            </p>
+
+
+                        </ul>
+                        <div class="social">
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                            <a href="#"><i class="fa fa-google-plus"></i></a>
+                            <a href="#"><i class="fa fa-skype"></i></a>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="content-block footer-bottom" id="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-6">&copy; Copyright <a href="http://www.foxmulder.odns.fr" target="_blink">Johan B.
+        <div class="content-block footer-bottom" id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-6">&copy; Copyright <a href="http://www.foxmulder.odns.fr" target="_blink">Johan B.
+                    </div>
                 </div>
             </div>
-        </div>
-    </div><!-- #footer -->
+        </div><!-- #footer -->
+    {% endblock %}
 
 </div><!--/#wrapper-->
 

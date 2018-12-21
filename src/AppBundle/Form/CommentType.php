@@ -2,27 +2,29 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Image;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ImageType extends AbstractType
+class CommentType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('file', FileType::class, ["required" => false, 'label' => 'Image']);
-    }/**
+        $builder
+            ->add('content', TextType::class)
+        ;
+    }
+    /**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Image::class
+            'data_class' => 'AppBundle\Entity\Comment'
         ));
     }
 
@@ -31,8 +33,10 @@ class ImageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_image';
+        return 'appbundle_comment';
     }
 
 
 }
+
+

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -60,7 +61,7 @@ class Trick
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", cascade={"remove"}, orphanRemoval=true)
      */
     private $comments;
 
@@ -272,5 +273,22 @@ class Trick
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @return Collection|Comment[]
+     */
+    public function getComments(): Collection
+    {
+        return $this->comments;
+    }
+    public function addComment(Comment $comment): self
+
+    {
+        if (!$this->comments->contains($comment)){
+            $this->comments[] = $comment;
+            $comment->setTrick($this);
+        }
+        return $this;
     }
 }

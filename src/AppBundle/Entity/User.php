@@ -28,6 +28,7 @@ class User implements UserInterface
      */
     private $id;
 
+
     /**
      * @var string
      * @Assert\NotNull()
@@ -52,9 +53,15 @@ class User implements UserInterface
     private $password;
 
     /**
-     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapé le même mot de passe")
+     * @Assert\EqualTo(propertyPath="password", message="Vous n'avez pas tapée le même mot de passe")
      */
     public $confirm_password;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="user")
+     *
+     */
+    private $comment;
 
 
     /**
@@ -137,6 +144,29 @@ class User implements UserInterface
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * Set comment
+     *
+     * @param Comment $comment
+     *
+     * @return User
+     */
+    public function setComment(Comment $comment = null)
+    {
+        $this->comment = $comment;
+        return $this;
+    }
+
+    /**
+     * Get comment
+     *
+     * @return Comment|null
+     */
+    public function getComment()
+    {
+        return $this->comment;
     }
 
     public function eraseCredentials()
