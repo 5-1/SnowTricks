@@ -43,7 +43,36 @@
     </div>
 {% endblock %}
 
+<<<<<<< HEAD
     {% block javascripts %}
+=======
+                {% for trick in tricks %}
+                    <div class="modal" id="delete-{{ trick.id }}">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">Suppression</h4>
+                                </div>
+                                <div class="modal-body">
+                                    La suppresion d'un article étant définitif, veuillez être sur de votre action.
+                                </div>
+                                <div class="modal-footer">
+                                    <form action="{{ path('trick_delete', {'id': trick.id}) }}" method="post">
+                                        <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
+                                        <a href="{{ path('tricks_show', {'id': trick.id}) }}" class="btn btn-default">
+                                            <i class="glyphicon glyphicon-chevron-left"></i>
+                                            Voir la figure
+                                        </a>
+                                        {# Ici j'ai écrit le bouton de soumission à la main #}
+                                        <input type="submit" value="Supprimer" class="btn btn-danger"/>
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+>>>>>>> When your connected, you dont have at take your username, he take your username automaticaly !
 
         {{ parent() }}
         <script>
