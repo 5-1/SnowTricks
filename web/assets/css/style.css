@@ -148,6 +148,7 @@ header.top-header {
  transition: all .6s;
 }
 .shows .navbar-default {
+
   /* background-color: #f8f8f8; */
   /* border-color: #e7e7e7; */
   margin-bottom: 10px;
@@ -160,7 +161,7 @@ header.top-header {
 }
 .shows h1.logo {
   margin-top: 0px;
-  color: white;
+    color: dark;
 }
 
 h1.logo {
@@ -706,4 +707,38 @@ button.navbar-toggle.collapsed {
 
 .spacer {
     margin-bottom: 10px;
+}
+
+.thumbnail-comment {
+    padding: 0px;
+}
+
+.panel {
+    position: relative;
+}
+
+.panel > .panel-heading:after, .panel > .panel-heading:before {
+    position: absolute;
+    top: 11px;
+    left: -16px;
+    right: 100%;
+    width: 0;
+    height: 0;
+    display: block;
+    content: " ";
+    border-color: transparent;
+    border-style: solid solid outset;
+    pointer-events: none;
+}
+
+.panel > .panel-heading:after {
+    border-width: 7px;
+    border-right-color: #f7f7f7;
+    margin-top: 1px;
+    margin-left: 2px;
+}
+
+.panel > .panel-heading:before {
+    border-right-color: #ddd;
+    border-width: 8px;
 }

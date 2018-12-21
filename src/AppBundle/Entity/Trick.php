@@ -61,7 +61,7 @@ class Trick
     private $category;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Comment", mappedBy="trick", cascade={"remove"}, orphanRemoval=true)
      */
     private $comments;
 

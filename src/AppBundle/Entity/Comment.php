@@ -22,12 +22,7 @@ class Comment
      */
     private $id;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="author", type="string", length=255)
-     */
-    private $author;
+
 
     /**
      * @var string
@@ -50,6 +45,13 @@ class Comment
      */
     private $trick;
 
+    /**
+     * @var string
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comment")
+     *
+     */
+    private $user;
+
 
     /**
      * Get id
@@ -61,29 +63,6 @@ class Comment
         return $this->id;
     }
 
-    /**
-     * Set author
-     *
-     * @param string $author
-     *
-     * @return Comment
-     */
-    public function setAuthor($author)
-    {
-        $this->author = $author;
-
-        return $this;
-    }
-
-    /**
-     * Get author
-     *
-     * @return string
-     */
-    public function getAuthor()
-    {
-        return $this->author;
-    }
 
     /**
      * Set content
@@ -156,5 +135,23 @@ class Comment
     {
         return $this->trick;
     }
+
+    /**
+     * @return string
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param string $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
 }
 

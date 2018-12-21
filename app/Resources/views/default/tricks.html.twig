@@ -1,8 +1,23 @@
 {% extends 'base.html.twig' %}
 
-
-
 {% block body %}
+    <style>
+        .thumbnail {
+            position: relative;
+            width: 285px;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .img-thumbnail {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            right: -9999px;
+            bottom: -9999px;
+            margin: auto;
+        }
+    </style>
 
     <div id="header" class="content-block">
 
@@ -17,8 +32,29 @@
     </div><!-- header -->
 
 
+    <div class="modal" id="delete">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Suppression</h4>
+                </div>
+                <div class="modal-body">
+                    La suppression d'un article étant définitive, veuillez être sûr de votre action.
+                </div>
+                <div class="modal-footer">
+                    <form action="{{ path('trick_delete', {'id': trick.id}) }}" method="post">
+                        <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
+                        <a href="{{ path('tricks_show', {'id': trick.id}) }}" class="btn btn-default">
+                            <i class="glyphicon glyphicon-chevron-left"></i>
+                            Voir la figure
+                        </a>
+                        <input type="submit" value="Supprimer" class="btn btn-danger"/>
 
-
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -28,6 +64,10 @@
                 <a href="{{ path('trick_add') }}" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
                 <a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-o btn-lg pull-right">Editer la
                     figure !</a>
+                <a href="" data-toggle="modal" data-target="#delete"
+                   class="btn btn-o btn-lg pull-right">Supprimer la figure !</a>
+
+
                 <div class="title-page">
                     <p class="main-header">{{ trick.title }}</p>
                     <p class="sub-header">Ecrit le {{ trick.createdAt | date('d/m/Y') }}
@@ -50,41 +90,63 @@
                                     Photos</h2>
                             </div>
                         </div>
-                        <section class="block-body">
 
-                            <div class="row">
-                                <div class="col-xs-12 text-center">
-                                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                                        <!-- Indicators -->
-                                        <ol class="carousel-indicators">
-                                            <li data-target="#carousel-example-generic"
-                                                data-slide-to="0" class="active"></li>
-                                            <li data-target="#carousel-example-generic"
-                                                data-slide-to="1"></li>
-                                        </ol>
 
-                                        <div class="carousel-inner" role="listbox">
-                                            {% for image in trick.images %}
-                                                <div class="item {{ (loop.first)? "active":"" }}">
-                                                    <img src="{{ asset('uploads/image/'~ image.file) }}" alt="">
+                        <div class="row">
+
+                            {% for image in trick.images %}
+                                <div class="item {{ (loop.first)? "active":"" }}">
+
+
+                                    <div class="col-md-3 col-lg-3 col-sm-3">
+                                        <a class="thumbnail" style="max-height: 400px" href="#" data-image-id=""
+                                           data-toggle="modal" data-title=""
+                                           data-image="{{ asset('uploads/image/'~ image.file) }}"
+                                           data-target="#image-gallery">
+                                            <img class="img-thumbnail"
+                                                 src="{{ asset('uploads/image/'~ image.file) }}"
+                                                 alt="Another alt text ( sa marche pas )">
+
+                                        </a>
+
+
+                                        <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog"
+                                             aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h4 class="modal-title" id="image-gallery-title"></h4>
+                                                        <button type="button" class="close" data-dismiss="modal"><span
+                                                                    aria-hidden="true">×</span><span class="sr-only">Close</span>
+                                                        </button>
                                                 </div>
-                                            {% endfor %}
+                                                    <div class="modal-body">
+                                                        <img id="image-gallery-image" class="img-responsive col-md-12"
+                                                             src="">
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary float-left"
+                                                                id="show-previous-image"><i
+                                                                    class="fa fa-arrow-left"></i>
+                                                        </button>
+
+                                                        <button type="button" id="show-next-image"
+                                                                class="btn btn-secondary float-right"><i
+                                                                    class="fa fa-arrow-right"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <!-- Controls -->
-                                        <a class="left carousel-control" href="#carousel-example-generic" role="button"
-                                           data-slide="prev">
-                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                                            <span class="sr-only">Previous</span>
-                                        </a>
-                                        <a class="right carousel-control" href="#carousel-example-generic" role="button"
-                                           data-slide="next">
-                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                                            <span class="sr-only">Next</span>
-                                        </a>
                                     </div>
+
                                 </div>
-                            </div>
-                            <div class="row">
+                            {% endfor %}
+
+                        </div>
+
+
+                        <div class="row">
                                 <div class="col-xs-12 text-center">
                                     <h2 class="soustitre">
                                         Vidéos</h2>
@@ -153,13 +215,12 @@
                     {% for comment in trick.comments() %}
 
                     <div class="container">
-                        <div class="row">
 
-                        </div><!-- /row -->
+
                         <div class="row">
                             <div class="col-sm-1">
-                                <div class="thumbnail">
-                                    <img class="img-responsive user-photo"
+                                <div class="thumbnail-comment">
+                                    <img class="img-responsive-comment user-photo"
                                          src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
                                 </div><!-- /thumbnail -->
                             </div><!-- /col-sm-1 -->
@@ -167,7 +228,7 @@
                             <div class="col-sm-5">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
-                                        <strong>{{ comment.author }}</strong> <span
+                                        <strong>{{ comment.user.username }}</strong> <span
                                                 class="text-muted">{{ comment.createdAt | date ('d/m/Y à H:i') }}</span>
                                     </div>
                                     <div class="panel-body">
@@ -180,6 +241,7 @@
 
 
                         </div><!-- /container -->
+
                     </div>
 
                 </section>
@@ -188,8 +250,5 @@
         </div>
 
     </div><!-- #blog -->
-
-
-
 
 {% endblock %}

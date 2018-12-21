@@ -15,29 +15,24 @@ class ShowTrickController extends Controller
 {
 
 
+
     /**
      * @Route("/trick/{id}", name="tricks_show")
      * @param Trick $trick
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function trickShow(Trick $trick, Request $request, ObjectManager $manager)
+    public function trickShow(Request $request, ObjectManager $manager)
     {
+        $trick = $this->getDoctrine()->getRepository(Trick::class)->find($request->attributes->get('id'));
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-        if ($this->getUser()) {
-            $user = $this->getUser();
-            $username = $user->getUsername();
-
-        } else {
-            $username = null;
-        }
 
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid() && $this->getUser()) {
             $comment->setCreatedAt(new \DateTime())
                 ->setTrick($trick);
-            $comment->setAuthor($username);
+            $comment->setUser($this->getUser());
             $manager->persist($comment);
             $manager->flush();
 
