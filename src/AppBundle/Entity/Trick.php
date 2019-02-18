@@ -30,8 +30,11 @@ class Trick
     private $title;
 
     /**
-     * @var string
-     * @ORM\Column(type="text", nullable=true)
+     *
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
+     * @Assert\Valid
      */
     private $video;
 
@@ -41,12 +44,11 @@ class Trick
      */
     private $content;
 
-
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist", "remove"})
-     * @Assert\Valid()
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
      */
     private $images;
+
 
     /**
      * @var \DateTime
@@ -74,8 +76,8 @@ class Trick
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
         $this->images = new ArrayCollection();
+        $this->createdAt = new \DateTime();
         $this->comments = new ArrayCollection();
     }
 
@@ -135,6 +137,24 @@ class Trick
     }
 
     /**
+     * @param Video $video
+     */
+    public function addVideo(Video $video)
+    {
+        $video->setTrick($this);
+        $this->video->add($video);
+    }
+
+    /**
+     * @param Video $video
+     */
+    public function removeVideo(Video $video)
+    {
+        $video->setTrick(null);
+        $this->video->removeElement($video);
+    }
+
+    /**
      * Get video
      *
      * @return string
@@ -166,6 +186,32 @@ class Trick
     public function getContent()
     {
         return $this->content;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image $picture
+     */
+    public function addImage(Image $picture)
+    {
+        $picture->setTrick($this);
+        $this->images->add($picture);
+    }
+
+    /**
+     * @param Image $picture
+     */
+    public function removeImage(Image $picture)
+    {
+        $picture->setTrick(null);
+        $this->images->removeElement($picture);
     }
 
 
@@ -240,40 +286,6 @@ class Trick
         return $this->slug;
     }
 
-    /**
-     * Add image
-     *
-     * @param \AppBundle\Entity\Image $image
-     *
-     * @return Trick
-     */
-    public function addImage(\AppBundle\Entity\Image $image)
-    {
-        $this->images[] = $image;
-        $image->setTrick($this);
-
-        return $this;
-    }
-
-    /**
-     * Remove image
-     *
-     * @param \AppBundle\Entity\Image $image
-     */
-    public function removeImage(\AppBundle\Entity\Image $image)
-    {
-        $this->images->removeElement($image);
-    }
-
-    /**
-     * Get images
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getImages()
-    {
-        return $this->images;
-    }
 
     /**
      * @return Collection|Comment[]

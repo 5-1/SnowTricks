@@ -49,7 +49,7 @@ html {
 
 body {
     color: #6a6a6a;
-  background: #f1f0f0;
+    background: #ffffff;
 }
 
 p {
@@ -570,8 +570,9 @@ h2.footer-block {
     font-family: "Raleway" , sans-serif;
 }
 .form-control{
-  border-radius: none !important;
-  padding: 20px 26px;
+    border-radius: none !important;
+    padding: 20px 26px;
+    height: 100% !important;
 }
 .form-group .btn.btn-o-white {
     width: 100%;
@@ -690,6 +691,14 @@ button.navbar-toggle.collapsed {
     min-height: 18em;
 }
 
+.card-image {
+    position: relative;
+    width: 255px;
+    height: 200px;
+    overflow: hidden;
+
+}
+
 .card img {
     margin-top: 1em;
 }
@@ -741,4 +750,12 @@ button.navbar-toggle.collapsed {
 .panel > .panel-heading:before {
     border-right-color: #ddd;
     border-width: 8px;
+}
+
+.box {
+    background: #2B3E51;
+    padding: 20px;
+    border-radius: 5px;
+    color: #ffffff;
+
 }

@@ -4,24 +4,25 @@
     {% include 'includes/header.html.twig' %}
 {% endblock %}
 
-
 {% block body %}
+
     <div class="content-block">
 
 
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h1>Ajout d'un Tricks</h1>
+                    <h1>Modification d'un Tricks</h1>
 
                     <div class="box">
                         {{ form_start(form) }}
                         {{ form_row(form.title, {'attr': {'placeholder': "Titre du  tricks"}}) }}
-                        {{ form_widget(form.video, {'attr': {'placeholder': "Lien Youtube ou Dailymotion du tricks"}}) }}
                         {{ form_row(form.slug, {'attr': {'placeholder': "tittre-format-url"}}) }}
                         {{ form_row(form.category) }}
                         {{ form_row(form.content, {'attr': {'placeholder': "Description du tricks"}}) }}
+
                         {{ form_widget(form.images) }}
+                        {{ form_row(form.video, {'attr': {'placeholder': "Lien Youtube du tricks"}}) }}
 
                         <button type="submit" class="btn btn-success"> Ajouter le tricks</button>
                         {{ form_end(form) }}
@@ -31,8 +32,6 @@
             </div>
         </div>
     </div>
-
-
 {% endblock %}
 
 
@@ -52,7 +51,7 @@
 
         $(document).ready(function () {
             var $addTagButton = jQuery('<button type="button" class="add_image_link">Ajouter une image</button>');
-            var $collectionHolder = jQuery('#appbundle_trick_images');
+            var $collectionHolder = jQuery('#appbundle_edit_images');
             $collectionHolder.append($addTagButton);
 
             $collectionHolder.data('index', $collectionHolder.find('.images-entry').length);

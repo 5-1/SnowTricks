@@ -30,61 +30,130 @@
             </header>
 
             <section class="block-body">
-
-                {% for trick in tricks %}
-                    <div class="modal" id="delete-{{ trick.id }}">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h4 class="modal-title">Suppression</h4>
-                                </div>
-                                <div class="modal-body">
-                                    La suppresion d'un article étant définitif, veuillez être sur de votre action.
-                                </div>
-                                <div class="modal-footer">
-                                    <form action="{{ path('trick_delete', {'id': trick.id}) }}" method="post">
-                                        <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
-                                        <a href="{{ path('tricks_show', {'id': trick.id}) }}" class="btn btn-default">
-                                            <i class="glyphicon glyphicon-chevron-left"></i>
-                                            Voir la figure
-                                        </a>
-                                        {# Ici j'ai écrit le bouton de soumission à la main #}
-                                        <input type="submit" value="Supprimer" class="btn btn-danger"/>
-
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-lg-3 card ">
-                        <img src="{{ asset('assets/images/header-bg.jpg') }}">
-                        <div class="row">
-                            <div class="col-lg-7">
-                                <a href="{{ path('tricks_show', {'id': trick.id}) }}"><h4>{{ trick.title }}</h4></a>
-
-                            </div>
-                            <div class="col-lg-5">
-
-
-                                <a href="{{ path('trick_edit', {'id': trick.id}) }}">
-                                    <button class="btn"><i class="fa fa-pencil"></i></button>
-                                </a>
-                                <a href="" data-toggle="modal" data-target="#delete-{{ trick.id }}">
-                                    <button class="btn"><i class="fa fa-trash"></i></button>
-                                </a>
-
-
-                            </div>
-                        </div>
-                        <div class="row spacer">
-                        </div>
-                    </div>
-                    {% endfor %}
-
-
+                <div class="row" id="tricks" data-offset="0" data-limit="4" data-web-path="{{ asset('') }}"
+                     data-base-url="{{ path('index') }}" data-csrf="{{ csrf_token('delete-item') }}">
+                </div>
+                <div class="text-center">
+                    <button id="more" type="button" class="btn btn-o btn-lg ">Voir plus <i id="load"
+                                                                                           class="fas fa-spinner fa-spin"></i>
+                    </button>
+                </div>
             </section>
         </div>
     </div>
 {% endblock %}
+
+    {% block javascripts %}
+
+        {{ parent() }}
+        <script>
+            jQuery(document).ready(function () {
+                var offset = jQuery('#tricks').data('offset');
+                var limit = jQuery('#tricks').data('limit');
+                var baseUrl = jQuery('#tricks').data('baseUrl');
+                var webPath = jQuery('#tricks').data('webPath');
+                var csrf = jQuery('#tricks').data('csrf');
+                var total = 0;
+
+                function request(offset, limit) {
+                    jQuery.ajax({
+                        url: "{{ path('load_more') }}",
+                        method: "POST",
+                        data: {
+                            'offset': offset,
+                            'limit': limit,
+                        },
+                        success: function (result) {
+                            total = result.length;
+                            if (total < limit) {
+                                //$("#more").prop('disabled',true);
+                                jQuery("#more").hide();
+                            }
+
+                            for (var i = 0; i < result.length; i++) {
+                                var trick = result[i];
+                                var slug = result[i]['slug'];
+                                var image = result[i]['image'];
+                                var html =
+                                    "\n" +
+                                    "<div class=\"modal\" id=\"delete-" + trick['id'] + "\">\n" +
+                                    "    <div class=\"modal-dialog\">\n" +
+                                    "        <div class=\"modal-content\">\n" +
+                                    "            <div class=\"modal-header\">\n" +
+                                    "                <h4 class=\"modal-title\">Suppression</h4>\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"modal-body\">\n" +
+                                    "                La suppresion d'un article étant définitif, veuillez être sur de votre action.\n" +
+                                    "            </div>\n" +
+                                    "            <div class=\"modal-footer\">\n" +
+                                    "                <form action=\"" + baseUrl + "supprimer-une-figure/" + trick['id'] + "\" method=\"post\">\n" +
+                                    "                    <input type=\"hidden\" name=\"token\" value=\"" + csrf + "\"/>\n" +
+                                    "                    <a href=\"" + baseUrl + "trick/" + trick['id'] + "\" class=\"btn btn-default\">\n" +
+                                    "                        <i class=\"glyphicon glyphicon-chevron-left\"></i>\n" +
+                                    "                        Voir la figure\n" +
+                                    "                    </a>\n" +
+                                    "                    {# Ici j'ai écrit le bouton de soumission à la main #}\n" +
+                                    "                    <input type=\"submit\" value=\"Supprimer\" class=\"btn btn-danger\"/>\n" +
+                                    "\n" +
+                                    "                </form>\n" +
+                                    "            </div>\n" +
+                                    "        </div>\n" +
+                                    "    </div>\n" +
+                                    "</div>\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "<div class=\"col-lg-3 card\">\n" +
+                                    "    <div class=\"card-image\">\n" +
+                                    "        <img src=\"" + webPath + image + "\">\n" +
+                                    "    </div>\n" +
+                                    "    <div class=\"row\">\n" +
+                                    "        <div class=\"col-lg-7\">\n" +
+                                    "            <a href=\"" + baseUrl + "trick/" + trick['id'] + "\"><h4>" + result[i]['title'] + "</h4></a>\n" +
+                                    "        </div>\n" +
+                                    "        <div class=\"col-lg-5\">\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "            <a href=\"" + baseUrl + "editer-une-figure/" + trick['id'] + "\">\n" +
+                                    "                <button class=\"btn\"><i class=\"fa fa-pencil\"></i></button>\n" +
+                                    "            </a>\n" +
+                                    "            <a href=\"\" data-toggle=\"modal\" data-target=\"#delete-" + trick['id'] + "\">\n" +
+                                    "                <button class=\"btn\"><i class=\"fa fa-trash\"></i></button>\n" +
+                                    "            </a>\n" +
+                                    "\n" +
+                                    "\n" +
+                                    "        </div>\n" +
+                                    "    </div>\n" +
+                                    "    <div class=\"row spacer\">\n" +
+                                    "    </div>\n" +
+                                    "</div>\n";
+
+
+                                jQuery('#tricks').append(html);
+                            }
+
+                        }
+                    });
+                    jQuery('#load').hide();
+                    jQuery('#tricks').animate({
+                        opacity: 1,
+                    }, 1000);
+
+                }
+
+                request(offset, limit);
+
+                offset = jQuery('#tricks').data("offset") + limit;
+
+                jQuery('#more').on('click', function () {
+                    jQuery('#tricks').animate({
+                        opacity: 0,
+                    }, 100);
+                    request(offset, limit);
+                    offset += jQuery('#tricks').data("offset") + limit;
+                })
+
+
+            })
+        </script>
+
+    {% endblock %}

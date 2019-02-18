@@ -2,13 +2,13 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\Image;
+use AppBundle\Entity\Video;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ImageType extends AbstractType
+class VideoType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -17,7 +17,7 @@ class ImageType extends AbstractType
     {
         $builder
             ->add(
-                'file', FileType::class,
+                'url', TextType::class,
                 [
                     'label' => false
                 ]
@@ -30,7 +30,7 @@ class ImageType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => Image::class
+            'data_class' => Video::class
         ));
     }
 
@@ -39,8 +39,7 @@ class ImageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_image';
+        return 'appbundle_video';
     }
-
 
 }
