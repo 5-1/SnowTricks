@@ -1,5 +1,5 @@
 {% block _appbundle_edit_images_entry_row %}
-    <div class="images-entry">
+    <div class="form-group">
         {% if form.vars.value %}
             <img src="{{ asset(form.vars.value.webPath) }}" alt="" class="preview">
         {% endif %}
@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block _appbundle_trick_images_entry_row %}
-    <div class="images-entry">
+    <div class="form-group">
         {% if form.vars.value %}
             <img src="{{ asset(form.vars.value.webPath) }}" alt="" class="preview">
         {% endif %}
