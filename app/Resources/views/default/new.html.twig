@@ -17,11 +17,11 @@
                     <div class="box">
                         {{ form_start(form) }}
                         {{ form_row(form.title, {'attr': {'placeholder': "Titre du  tricks"}}) }}
-                        {{ form_widget(form.video, {'attr': {'placeholder': "Lien Youtube ou Dailymotion du tricks"}}) }}
+                        {{ form_row(form.videos, {'attr': {'placeholder': "Lien Youtube ou Dailymotion du tricks"}}) }}
                         {{ form_row(form.slug, {'attr': {'placeholder': "tittre-format-url"}}) }}
                         {{ form_row(form.category) }}
                         {{ form_row(form.content, {'attr': {'placeholder': "Description du tricks"}}) }}
-                        {{ form_widget(form.images) }}
+                        {{ form_row(form.images) }}
 
                         <button type="submit" class="btn btn-success"> Ajouter le tricks</button>
                         {{ form_end(form) }}
@@ -38,45 +38,5 @@
 
 {% block javascripts %}
     {{ parent() }}
-    <script>
-
-        function addTagFormDeleteLink($tagFormLi) {
-            var $removeFormButton = jQuery('<button type="button">Supprimer</button>');
-            $tagFormLi.append($removeFormButton);
-
-            $removeFormButton.on('click', function (e) {
-                $tagFormLi.remove();
-            });
-        }
-
-
-        $(document).ready(function () {
-            var $addTagButton = jQuery('<button type="button" class="add_image_link">Ajouter une image</button>');
-            var $collectionHolder = jQuery('#appbundle_trick_images');
-            $collectionHolder.append($addTagButton);
-
-            $collectionHolder.data('index', $collectionHolder.find('.images-entry').length);
-
-            $collectionHolder.find('.images-entry').each(function () {
-                addTagFormDeleteLink(jQuery(this));
-            });
-
-            $addTagButton.on('click', function (e) {
-                addImageForm($collectionHolder, $addTagButton);
-            });
-        });
-
-        function addImageForm($collectionHolder, $newLinkLi) {
-            var prototype = $collectionHolder.data('prototype');
-            var index = $collectionHolder.find('input').length;
-            var newForm = prototype;
-            newForm = newForm.replace(/__name__/g, index);
-            newForm = newForm.replace(/label__/g, '');
-            $collectionHolder.data('index', index + 1);
-
-            $newLinkLi.before(newForm);
-            addTagFormDeleteLink(newForm);
-        }
-
-    </script>
+    <script src="{{ asset('js/form-collection.js') }}"></script>
 {% endblock %}
