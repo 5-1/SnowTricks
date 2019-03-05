@@ -208,6 +208,6 @@ class Image
      */
     public function getUploadDir()
     {
-        return 'assets/images';
+        return 'uploads/image';
     }
 }

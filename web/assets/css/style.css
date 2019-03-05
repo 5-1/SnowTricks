@@ -326,11 +326,7 @@ h1.logo {
   color: white;
   background: #db5252;
 }
-#contact {
-  background-image: url(../images/newsletter-bg.png);
-  color: white;
-  background-color: #405162;
-}
+
 #parallax h1{
   margin-bottom: 60px;
   color: white;
