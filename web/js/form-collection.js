@@ -2,7 +2,6 @@ function addDeleteLink($entry) {
 
     var $removeFormButton = jQuery('<button type="button" class="btn btn-success" >Supprimer</button>');
 
-
     $entry.append($removeFormButton);
 
     $removeFormButton.on('click', function (e) {
@@ -25,6 +24,7 @@ $(document).ready(function () {
         });
 
         var $addButton = jQuery('<button type="button" class="btn btn-success" >Ajouter</button>');
+
 
         $addButton.on('click', function () {
             addEntryForm($collectionHolder, $addButton);
