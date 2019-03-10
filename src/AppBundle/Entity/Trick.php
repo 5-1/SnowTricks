@@ -36,7 +36,7 @@ class Trick
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Video", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
      * @Assert\Valid
      */
-    private $video;
+    private $videos;
 
     /**
      * @var string
@@ -77,6 +77,7 @@ class Trick
     public function __construct()
     {
         $this->images = new ArrayCollection();
+        $this->videos = new ArrayCollection();
         $this->createdAt = new \DateTime();
         $this->comments = new ArrayCollection();
     }
@@ -125,13 +126,13 @@ class Trick
     /**
      * Set video
      *
-     * @param string $video
+     * @param string $videos
      *
      * @return Trick
      */
-    public function setVideo($video)
+    public function setVideos($videos)
     {
-        $this->video = $video;
+        $this->videos = $videos;
 
         return $this;
     }
@@ -142,7 +143,7 @@ class Trick
     public function addVideo(Video $video)
     {
         $video->setTrick($this);
-        $this->video->add($video);
+        $this->videos->add($video);
     }
 
     /**
@@ -151,7 +152,7 @@ class Trick
     public function removeVideo(Video $video)
     {
         $video->setTrick(null);
-        $this->video->removeElement($video);
+        $this->videos->removeElement($video);
     }
 
     /**
@@ -159,9 +160,9 @@ class Trick
      *
      * @return string
      */
-    public function getVideo()
+    public function getVideos()
     {
-        return $this->video;
+        return $this->videos;
     }
 
     /**
