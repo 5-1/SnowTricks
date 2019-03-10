@@ -4,7 +4,6 @@
     {% include 'includes/header.html.twig' %}
 {% endblock %}
 
-
 {% block body %}
     <div class="content-block">
 
@@ -31,12 +30,12 @@
             </div>
         </div>
     </div>
-
-
 {% endblock %}
 
 
 {% block javascripts %}
     {{ parent() }}
+
     <script src="{{ asset('js/form-collection.js') }}"></script>
+
 {% endblock %}

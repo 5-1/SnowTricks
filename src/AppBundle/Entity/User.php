@@ -75,8 +75,6 @@ class User implements UserInterface
     private $activated;
 
 
-
-
     /**
      * Get id
      *
@@ -182,6 +180,7 @@ class User implements UserInterface
         return $this->comment;
     }
 
+
     /**
      * @return mixed
      */
@@ -213,9 +212,6 @@ class User implements UserInterface
     {
         $this->activated = $activated;
     }
-
-
-
 
 
     public function eraseCredentials()

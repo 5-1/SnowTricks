@@ -34,6 +34,7 @@ class SecurityController extends Controller
     {
         $this->authenError = $authenError;
         $this->sendMailer = $sendMailer;
+
     }
 
 

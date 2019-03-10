@@ -49,7 +49,6 @@ class Trick
      */
     private $images;
 
-
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime", nullable=false)
@@ -76,9 +75,11 @@ class Trick
 
     public function __construct()
     {
+
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->createdAt = new \DateTime();
+
         $this->comments = new ArrayCollection();
     }
 
@@ -133,7 +134,6 @@ class Trick
     public function setVideos($videos)
     {
         $this->videos = $videos;
-
         return $this;
     }
 
@@ -160,6 +160,7 @@ class Trick
      *
      * @return string
      */
+
     public function getVideos()
     {
         return $this->videos;
@@ -214,8 +215,6 @@ class Trick
         $picture->setTrick(null);
         $this->images->removeElement($picture);
     }
-
-
 
     /**
      * Set createdAt
@@ -286,7 +285,6 @@ class Trick
     {
         return $this->slug;
     }
-
 
     /**
      * @return Collection|Comment[]

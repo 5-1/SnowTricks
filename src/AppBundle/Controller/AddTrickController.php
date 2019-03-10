@@ -35,11 +35,11 @@ class AddTrickController extends Controller
             /** @var Trick $trick */
             $trick = $form->getData();
 
-
             /**foreach ($trick->getImages() as $image) {
                 * $fileName = $fileUploader->upload($image->getFile());
                 * $image->setFile($fileName);
              * }**/
+
 
             $manager->persist($trick);
             $manager->flush();
