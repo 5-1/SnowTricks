@@ -15,6 +15,7 @@ class ImageType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add(
                 'file', FileType::class,
@@ -23,6 +24,7 @@ class ImageType extends AbstractType
                 ]
             );
     }
+
 
     /**
      * {@inheritdoc}

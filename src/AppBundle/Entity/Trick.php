@@ -38,17 +38,18 @@ class Trick
      */
     private $videos;
 
+
     /**
      * @var string
      * @ORM\Column(type="text")
      */
     private $content;
 
+
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Image", mappedBy="trick", cascade={"persist"}, orphanRemoval=true)
      */
     private $images;
-
 
     /**
      * @var \DateTime
@@ -76,9 +77,11 @@ class Trick
 
     public function __construct()
     {
+
         $this->images = new ArrayCollection();
         $this->videos = new ArrayCollection();
         $this->createdAt = new \DateTime();
+
         $this->comments = new ArrayCollection();
     }
 
@@ -134,6 +137,7 @@ class Trick
     {
         $this->videos = $videos;
 
+
         return $this;
     }
 
@@ -160,9 +164,11 @@ class Trick
      *
      * @return string
      */
+
     public function getVideos()
     {
         return $this->videos;
+
     }
 
     /**
@@ -214,6 +220,7 @@ class Trick
         $picture->setTrick(null);
         $this->images->removeElement($picture);
     }
+
 
 
 
@@ -286,6 +293,7 @@ class Trick
     {
         return $this->slug;
     }
+
 
 
     /**

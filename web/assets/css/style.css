@@ -49,7 +49,9 @@ html {
 
 body {
     color: #6a6a6a;
+
     background: #ffffff;
+
 }
 
 p {
@@ -691,6 +693,7 @@ button.navbar-toggle.collapsed {
     min-height: 18em;
 }
 
+
 .card-image {
     position: relative;
     width: 255px;
@@ -698,7 +701,6 @@ button.navbar-toggle.collapsed {
     overflow: hidden;
 
 }
-
 .card img {
     margin-top: 1em;
 }
@@ -750,6 +752,7 @@ button.navbar-toggle.collapsed {
 .panel > .panel-heading:before {
     border-right-color: #ddd;
     border-width: 8px;
+
 }
 
 .box {

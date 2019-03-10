@@ -1,8 +1,10 @@
+
 {% extends 'base.html.twig' %}
 
 {% block header %}
     {% include 'includes/header.html.twig' %}
 {% endblock %}
+
 
 
 {% block body %}
@@ -33,10 +35,13 @@
     </div>
 
 
+
 {% endblock %}
 
 
 {% block javascripts %}
     {{ parent() }}
+
     <script src="{{ asset('js/form-collection.js') }}"></script>
+
 {% endblock %}
