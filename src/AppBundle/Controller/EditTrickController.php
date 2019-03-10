@@ -41,8 +41,6 @@ class EditTrickController extends Controller
             return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
         }
 
-
-
         return $this->render('default/edit.html.twig', [
             'form' => $form->createView(),
         ]);

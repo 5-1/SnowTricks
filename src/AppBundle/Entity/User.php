@@ -63,6 +63,17 @@ class User implements UserInterface
      */
     private $comment;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     */
+    private $token;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $activated;
+
 
     /**
      * Get id
@@ -168,6 +179,40 @@ class User implements UserInterface
     {
         return $this->comment;
     }
+
+
+    /**
+     * @return mixed
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param mixed $token
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getActivated()
+    {
+        return $this->activated;
+    }
+
+    /**
+     * @param mixed $activated
+     */
+    public function setActivated($activated)
+    {
+        $this->activated = $activated;
+    }
+
 
     public function eraseCredentials()
     {
