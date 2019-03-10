@@ -1,29 +1,28 @@
-
 {% extends 'base.html.twig' %}
 
 {% block header %}
     {% include 'includes/header.html.twig' %}
 {% endblock %}
 
-
-
 {% block body %}
+
     <div class="content-block">
 
 
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h1>Ajout d'un Tricks</h1>
+                    <h1>Modification d'un Tricks</h1>
 
                     <div class="box">
                         {{ form_start(form) }}
                         {{ form_row(form.title, {'attr': {'placeholder': "Titre du  tricks"}}) }}
-                        {{ form_row(form.videos, {'attr': {'placeholder': "Lien Youtube ou Dailymotion du tricks"}}) }}
                         {{ form_row(form.slug, {'attr': {'placeholder': "tittre-format-url"}}) }}
                         {{ form_row(form.category) }}
                         {{ form_row(form.content, {'attr': {'placeholder': "Description du tricks"}}) }}
-                        {{ form_row(form.images) }}
+
+                        {{ form_widget(form.images) }}
+                        {{ form_row(form.videos, {'attr': {'placeholder': "Lien Youtube du tricks"}}) }}
 
                         <button type="submit" class="btn btn-success"> Ajouter le tricks</button>
                         {{ form_end(form) }}
@@ -33,15 +32,9 @@
             </div>
         </div>
     </div>
-
-
-
 {% endblock %}
-
 
 {% block javascripts %}
     {{ parent() }}
-
     <script src="{{ asset('js/form-collection.js') }}"></script>
-
 {% endblock %}
