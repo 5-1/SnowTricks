@@ -2,7 +2,6 @@
 
 namespace AppBundle\Form;
 
-use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -24,9 +23,7 @@ class ResetPasswordType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => User::class
-        ));
+
     }
 
     /**
@@ -34,8 +31,7 @@ class ResetPasswordType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_reset_password;
+        return 'appbundle_reset_password';
     }
-
 
 }
