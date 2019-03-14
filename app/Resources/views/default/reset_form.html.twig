@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {% include 'includes/header.html.twig' %}
+{% endblock %}
+
+
+{% block body %}
+
+
+    </br>
+    </br>
+    </br>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h1>Réinitialiser votre mot de passe</h1>
+                <p>
+                    vous recevrez un email après validation de ce formulaire.
+                </p>
+
+                <div class="box">
+                    {{ form_start(form) }}
+                    {{ form_row(form.email, {'label': 'Adresse email liée à votre compte', 'attr':
+                        {'placeholder': 'Adresse email'}}) }}
+                    <center>
+                        <button type="submit" class="btn btn-success"> Valider</button>
+                    </center>
+                    {{ form_end(form) }}
+                </div>
+                </br>
+                </br>
+                </br>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

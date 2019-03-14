@@ -34,7 +34,6 @@ class SecurityController extends Controller
     {
         $this->authenError = $authenError;
         $this->sendMailer = $sendMailer;
-
     }
 
 
@@ -48,6 +47,8 @@ class SecurityController extends Controller
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
+
+
     public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();

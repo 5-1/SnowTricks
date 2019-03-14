@@ -186,19 +186,17 @@
 
             </svg>
         </div>
-        </div>
+    </div>
 
     <div class="inputGroup inputGroup1">
         <label for="loginEmail" id="loginEmailLabel">Email</label>
         <input type="email" required name="_username" id="loginEmail" maxlength="254"/>
-
         <p class="helper helper1">Email</p>
-        </div>
+    </div>
     <div class="inputGroup inputGroup2">
         <label for="loginPassword" id="loginPasswordLabel">Mot de passe</label>
         <input type="password" required name="_password" id="loginPassword"/>
         <label id="showPasswordToggle" for="showPasswordCheck">Voir
-
             <input id="showPasswordCheck" type="checkbox"/>
             <div class="indicator"></div>
         </label>
@@ -207,9 +205,7 @@
         {% if error %}
 
             <div class="alert alert-danger" role="alert">
-
                 {{ error.message|trans }}
-
             </div>
 
         {% endif %}
@@ -218,6 +214,9 @@
     <div class="inputGroup inputGroup3">
         <button type="submit" id="login">Connexion</button>
     </div>
+    </br>
+    <a href="{{ path('reset') }}">Mot de passe oublier ?</a>
+
 </form>
 
 

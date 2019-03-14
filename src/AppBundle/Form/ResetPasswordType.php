@@ -3,12 +3,15 @@
 namespace AppBundle\Form;
 
 use AppBundle\Entity\Image;
+use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Length;
 
-class ImageType extends AbstractType
+class ResetPasswordType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -16,12 +19,14 @@ class ImageType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add(
-                'file', FileType::class,
-                [
-                    'label' => false
-                ]
-            );
+            ->add('password', PasswordType::class, array(
+                'constraints' => array(
+                    new Length(['min' => 6,
+                        'minMessage' => "Le mot de passe doit faire minimum 8 caractères",
+                    ]),
+                )))
+
+            ->add('confirm_password', PasswordType::class);
     }
 
     /**
@@ -29,9 +34,6 @@ class ImageType extends AbstractType
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => Image::class
-        ));
     }
 
     /**
@@ -39,7 +41,7 @@ class ImageType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_image';
+        return 'appbundle_reset_password';
     }
 
 

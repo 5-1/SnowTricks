@@ -75,6 +75,8 @@ class User implements UserInterface
     private $activated;
 
 
+
+
     /**
      * Get id
      *
@@ -180,7 +182,6 @@ class User implements UserInterface
         return $this->comment;
     }
 
-
     /**
      * @return mixed
      */
@@ -214,6 +215,9 @@ class User implements UserInterface
     }
 
 
+
+
+
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
@@ -229,4 +233,3 @@ class User implements UserInterface
         return ['ROLE_USER'];
     }
 }
-
