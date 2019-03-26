@@ -1,9 +1,8 @@
 {% extends 'base.html.twig' %}
-
-
 {% block stylesheets %}
     {{ parent() }}
 {% endblock %}
+
 {% block body %}
 
     <div id="header" class="content-block">
@@ -22,10 +21,11 @@
     <div class="content-block" id="blog">
         <div class="container blog-sec">
             <header class="block-heading cleafix">
+                {% if app.user %}
                 <a href="{{ path('trick_add') }}" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
+                {% endif %}
                 <div class="title-page">
                     <p class="main-header">Toutes les figures</p>
-                    <p class="sub-header">Keep up with the latest happenings.</p>
                 </div>
             </header>
 
@@ -34,14 +34,40 @@
                      data-base-url="{{ path('index') }}" data-csrf="{{ csrf_token('delete-item') }}">
                 </div>
                 <div class="text-center">
-                    <button id="more" type="button" class="btn btn-o btn-lg ">Voir plus <i id="load"
-                                                                                           class="fas fa-spinner fa-spin"></i>
+                    <button id="more" type="button" class="btn btn-o btn-lg ">Voir plus <i id="load" class="fas fa-spinner fa-spin"></i>
                     </button>
                 </div>
             </section>
+
+            <a id="back-to-top" href="#" class="pull-right" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page"
+               data-toggle="tooltip" data-placement="right"><span class="fa fa-chevron-up"></span></a>
+
+            <script>
+                // When the user scrolls down 20px from the top of the document, show the button
+                window.onscroll = function() {scrollFunction()};
+
+                function scrollFunction() {
+                    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                        document.getElementById("myBtn").style.display = "block";
+                    } else {
+                        document.getElementById("myBtn").style.display = "none";
+                    }
+                }
+
+                // When the user clicks on the button, scroll to the top of the document
+                function topFunction() {
+                    document.body.scrollTop = 0;
+                    document.documentElement.scrollTop = 0;
+                }
+            </script>
+
         </div>
     </div>
+
+
 {% endblock %}
+
+
 
     {% block javascripts %}
 
@@ -113,12 +139,14 @@
                                     "        <div class=\"col-lg-5\">\n" +
                                     "\n" +
                                     "\n" +
+                                    {% if app.user %}
                                     "            <a href=\"" + baseUrl + "editer-une-figure/" + trick['id'] + "\">\n" +
                                     "                <button class=\"btn\"><i class=\"fa fa-pencil\"></i></button>\n" +
                                     "            </a>\n" +
                                     "            <a href=\"\" data-toggle=\"modal\" data-target=\"#delete-" + trick['id'] + "\">\n" +
                                     "                <button class=\"btn\"><i class=\"fa fa-trash\"></i></button>\n" +
                                     "            </a>\n" +
+                                    {% endif %}
                                     "\n" +
                                     "\n" +
                                     "        </div>\n" +

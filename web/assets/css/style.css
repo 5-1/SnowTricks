@@ -566,7 +566,7 @@ ol.carousel-indicators {
 ///////////////////////////////////////////////////////////////////////*/
 
 
-#footer{ background: #2B3E51; color: white; border-top: 1px solid rgba(255, 255, 255, 0.24);}
+#footer{ background: #2B3E51; color: white; border-top: 1px solid  rgba(255, 255, 255, 0.24);}
 
 h2.footer-block {
     color: white;
@@ -764,4 +764,10 @@ button.navbar-toggle.collapsed {
     color: #ffffff;
 
 
+}
+
+.fl-page-footer-wrap {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
 }
