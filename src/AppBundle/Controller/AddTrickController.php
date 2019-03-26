@@ -44,9 +44,9 @@ class AddTrickController extends Controller
             $manager->persist($trick);
             $manager->flush();
 
-            $this->addFlash("success", "Votre figure à bien était ajoutée");
+            $this->addFlash("success", "Votre figure à bien été ajoutée");
 
-            return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
+            return $this->redirectToRoute('index');
         }
 
         return $this->render('default/new.html.twig', ['form' => $form->createView()]);
