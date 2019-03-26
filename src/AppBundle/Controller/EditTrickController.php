@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Trick;
 use AppBundle\Form\TrickEditType;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -17,6 +18,7 @@ class EditTrickController extends Controller
     /**
      * @Route("/editer-une-figure/{id}", name="trick_edit")
      * @param Trick $trick
+     * @IsGranted("ROLE_USER")
      * @param Request $request
      * @param EntityManagerInterface $manager
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
