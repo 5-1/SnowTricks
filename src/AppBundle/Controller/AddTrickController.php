@@ -44,6 +44,8 @@ class AddTrickController extends Controller
             $manager->persist($trick);
             $manager->flush();
 
+            $this->addFlash("success", "Votre figure à bien était ajoutée");
+
             return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
         }
 
