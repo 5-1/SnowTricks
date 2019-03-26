@@ -12,12 +12,15 @@ use Symfony\Component\Validator\Constraints as Assert;
  * trick
  * @ORM\Table(name="trick")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\TrickRepository")
+ * @UniqueEntity(
+ *     fields={"title"},
+ *     message="La figure existe déjà"
+ * )
  */
 class Trick
 {
     /**
      * @var int
-     *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
