@@ -14,6 +14,8 @@
                 <div class="col-md-6 col-md-offset-3">
                     <h1>Ajout d'un Tricks</h1>
 
+                    {% if app.user %}
+
                     <div class="box">
                         {{ form_start(form) }}
                         {{ form_row(form.title, {'attr': {'placeholder': "Titre du  tricks"}}) }}
@@ -25,7 +27,9 @@
 
                         <button type="submit" class="btn btn-success"> Ajouter le tricks</button>
                         {{ form_end(form) }}
-
+                        {% else %}
+                        <p> vous devez vous connecter pour ajouter une figure ... d'ailleurs, comment êtes-vous arriver ici?</p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
