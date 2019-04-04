@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block header %}
+    {% include 'includes/header.html.twig' %}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="">
+                <h2>Bonjour, vous pouvez içi toutes les informations liée à votre compte et en modifier certaines.</h2>
+                <h3>Username: {{ app.user.username }}</h3> <button type="button" class="btn btn-o btn-lg ">Modifier </button>
+                <h3>Email: {{ app.user.email }}</h3> <button type="button" class="btn btn-o btn-lg ">Modifier </button>
+                <h3>Avatar : </h3>
+                <img class="img-responsive-comment user-photo"
+                     src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                <button type="button" class="btn btn-o btn-lg ">Modifier </button>
+            </div>
+            </div>
+        </div>
+
+
+
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
