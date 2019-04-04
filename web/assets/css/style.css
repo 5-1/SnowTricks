@@ -111,7 +111,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .title-page {
-  display: inline-flex;
+    text-align: center;
   margin-bottom: -20px;
 }
 p.main-header {
@@ -696,8 +696,8 @@ button.navbar-toggle.collapsed {
 
 .card-image {
     position: relative;
-    width: 255px;
-    height: 200px;
+    width: 100%;
+    height: 240px;
     overflow: hidden;
 
 }
@@ -706,6 +706,12 @@ button.navbar-toggle.collapsed {
     margin-top: 1em;
 }
 
+@media (max-width: 500px) {
+    .card .row h4 {
+        text-align: center;
+    }
+    
+}
 .card .row h4 {
     margin-top: 1em;
 
@@ -771,3 +777,87 @@ button.navbar-toggle.collapsed {
     position: fixed;
     bottom: 0;
 }
+
+.actions {
+    position: absolute;
+    top: 100px;
+    margin-left: 85%;
+}
+
+.separator {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 100px;
+    margin-right: 100px;
+    border-style: inset;
+    border-width: 1px;
+}
+.separatorinvisible {
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: 500px;
+    margin-right: 500px;
+    border-style: inset;
+    border-width: 0px;
+
+}
+
+.centertext {
+    width: 1000px; /* à modifier selon vos besoins */
+    overflow: hidden; /* les dépassements seront masqués */
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90em
+}
+
+@media (min-width: 320px) {
+    .mobiledisplay {
+        background: white;
+        padding: 50px 0;
+        color: #ffffff;
+    }
+}
+
+.mobilemenu{
+    display: none;
+}
+
+@media (max-width: 1000px) {
+    .mobilemenu {
+
+        z-index: 9999;
+        display: block;
+        text-align: center;
+        color: yellow;
+        box-sizing:border-box;
+        background:#333;
+        position:fixed;
+        bottom:0;
+        width:100%;
+        left:0;
+        padding:15px;
+        font-size:35px;
+
+
+
+}
+    .mobilemenu .nav-item a{
+
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+
+    
+}
+
+@media (max-width: 1000px) {
+    .navbar-def{
+        display: none;
+    }
+    
+}
+

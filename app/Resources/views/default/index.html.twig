@@ -4,6 +4,11 @@
 {% endblock %}
 
 {% block body %}
+    <style>
+        .btn-actions{
+            background-color: white;
+        }
+    </style>
 
     <div id="header" class="content-block">
 
@@ -25,7 +30,7 @@
                 <a href="{{ path('trick_add') }}" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
                 {% endif %}
                 <div class="title-page">
-                    <p class="main-header">Toutes les figures</p>
+                    <h1 class="main-header">TOUT LES TRICKS</h1>
                 </div>
             </header>
 
@@ -41,7 +46,6 @@
 
             <a id="back-to-top" href="#" class="pull-right" class="btn btn-primary btn-lg back-to-top" role="button" title="Click to return on the top page"
                data-toggle="tooltip" data-placement="right"><span class="fa fa-chevron-up"></span></a>
-
             <script>
                 // When the user scrolls down 20px from the top of the document, show the button
                 window.onscroll = function() {scrollFunction()};
@@ -141,10 +145,10 @@
                                     "\n" +
                                     {% if app.user %}
                                     "            <a href=\"" + baseUrl + "editer-une-figure/" + trick['id'] + "\">\n" +
-                                    "                <button class=\"btn\"><i class=\"fa fa-pencil\"></i></button>\n" +
+                                    "                <button class=\"btn btn-actions\"><i class=\"fa fa-pencil\"></i></button>\n" +
                                     "            </a>\n" +
                                     "            <a href=\"\" data-toggle=\"modal\" data-target=\"#delete-" + trick['id'] + "\">\n" +
-                                    "                <button class=\"btn\"><i class=\"fa fa-trash\"></i></button>\n" +
+                                    "                <button class=\"btn btn-actions\"><i class=\"fa fa-trash\"></i></button>\n" +
                                     "            </a>\n" +
                                     {% endif %}
                                     "\n" +
