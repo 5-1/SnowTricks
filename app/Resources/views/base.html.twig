@@ -32,7 +32,25 @@
     {% endblock %}
 </head>
 <body>
+<div class="mobilemenu">
+    <li class="nav-item">
+        <a href="{{ path('index') }}"><i class="fa fa-home"></i> </a>
+        <a href="{{ path('index') }}"><i class="fa fa-tasks"></i> </a>
+
+        {% if not app.user %}
+        <a href="{{ path('security_registration') }}"><i class="fa fa-user-plus"></i> </a>
+        <a href="{{ path('security_login') }}"><i class="fa fa-sign-in"></i> </a>
+    </li>
+    {% else %}
+        <a href="{{ path('compteuser') }}"><i class="fa fa-gear"></i></a>
+        <a href="{{ path('security_logout') }}"><i class="fa fa-sign-out"></i></a>
+        </li>
+
+    {% endif %}
+</div>
 {% block header %}
+
+
     <header class="top-header">
         <div class="container">
             <div class="row">
@@ -42,23 +60,14 @@
                         <h1 class="logo">Snowtricks <span class="logo-head"></span></h1>
                     </a>
                 </div>
-
                 <div class="col-md-8 col-md-offset-1 col-xs-7">
                     <nav class="navbar navbar-default">
                         <div class="container-fluid nav-bar">
                             <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                                        data-target="#bs-example-navbar-collapse-1">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                            </div>
+
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse navbar-def" id="bs-example-navbar-collapse-1">
+                            <div class="  navbar-def" id="bs-example-navbar-collapse-1">
 
                                 <ul class="nav navbar-nav navbar-right">
                                     <li class="nav-item">
@@ -67,18 +76,19 @@
                                     <li>
                                         <a href="{{ path('index') }}"><i class="fa fa-tasks"></i> Tricks</a>
                                     </li>
-                                    <li class="nav-item">
-                                        <a href="{{ path('security_registration') }}"><i class="fa fa-bookmark"></i> Inscription</a>
-                                    </li>
                                     {% if not app.user %}
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_registration') }}"><i class="fa fa-user-plus"></i> Inscription</a>
+                                    </li>
                                         <li class="nav-item">
-                                            <a href="{{ path('security_login') }}"><i class="fa fa-bookmark"></i> Connexion</a>
-
+                                            <a href="{{ path('security_login') }}"><i class="fa fa-sign-in"></i> Connexion</a>
                                         </li>
                                     {% else %}
+                                        <li>
+                                            <a href="{{ path('compteuser') }}"><i class="fa fa-gear"></i> mon compte ({{ app.user.username }}</a>
+                                        </li>
                                         <li class="nav-item">
-                                            <a href="{{ path('security_logout') }}"><i class="fa fa-bookmark"></i> Déconnexion</a>
-
+                                            <a href="{{ path('security_logout') }}"><i class="fa fa-sign-out"></i> Déconnexion</a>
                                         </li>
                                     {% endif %}
                                 </ul>
@@ -92,90 +102,40 @@
 {% endblock %}
 <div id="wrapper">
 
-
     {% block body %}
     {% endblock %}
     {% block footer %}
-        <div class="content-block" id="footer">
+
+        <div class="content-block"  id="footer">
             <div class="container">
                 <div class="row">
-                    <div class="col-sm-4 blog-post">
+                    <div class="col-sm-6 blog-post">
 
                         <h2 class="footer-block">Une question?</h2>
                         <p>Site communautaire de partage de figures du snowboard.</p>
 
-                        <p>Attention: Le contenu de ce site est fictif mais entièrement fonctionnel, il à été crée dans un
-                            but d'apprentisage.
+                        <p>Attention: Le contenu de ce site est fictif, mais entièrement fonctionnel, il a été créé dans un but d'apprentissage.
                         </p>
                     </div>
-                    <div class="col-sm-4 blog-post">
-                        <h2 class="footer-block">Laissez nous un message</h2>
-                        <form action="contact-form.php" id="contactForm" method="post" name="contactform" class=""
-                              role="form">
-                            <div class="form-group">
-                                <input type="text" class="form-control form-control-white" id="name" name="name"
-                                       placeholder="Nom" required>
-                            </div>
-                            <div class="form-group">
-                                <input type="email" class="form-control form-control-white" id="email" name="email"
-                                       placeholder="E-mail" required>
-                            </div>
-                            <div class="form-group">
-                                <textarea class="form-control form-control-white" id="message" name="massage"
-                                          placeholder="Ecrire quelque chose.." required></textarea>
-                            </div>
-                            <div id="contactFormResponse"></div>
-                            <div class="form-group">
-                                <input id="cfsubmit" type="submit" class="text-center btn btn-o-white"
-                                       value="Envoyé">
-                            </div>
-                        </form>
-                    </div>
-                    <div class="col-sm-4 blog-post">
+
+                    <div class="col-sm-6 blog-post">
 
                         <h2 class="footer-block">Contact</h2>
                         <ul>
-                            <li class="address-sub"><i class="fa fa-map-marker"></i>Addresse</li>
-                            <p>
-                                Blabla Parkway, P.o Box 353 Mountain View. United States of America.
-                            </p>
-                            <li class="address-sub"><i class="fa fa-phone"></i>Téléphone</li>
-                            <p>
-                                fix : 1-800-123-hello<br>
-                                Mobile: 1-800-123-hello
-                            </p>
-                            <li class="address-sub"><i class="fa fa-envelope-o"></i>E-mail</li>
+                            <li class="address-sub"><i class="fa fa-home"></i>Site web</li>
                             <p>
                                 <a href="https://johanberg.fr/">https://johanberg.fr//</a>
                             </p>
 
 
                         </ul>
-                        <div class="social">
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            <a href="#"><i class="fa fa-google-plus"></i></a>
-                            <a href="#"><i class="fa fa-skype"></i></a>
-                        </div>
-
 
                     </div>
                 </div>
             </div>
+    </div>
         </div>
-        <div class="content-block footer-bottom" id="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-6">&copy; Copyright <a href="https://johanberg.fr/" target="_blink">Johan B.
-                    </div>
-                </div>
-            </div>
-        </div><!-- #footer -->
-    {% endblock %}
-
-</div><!--/#wrapper-->
+    {% endblock %} <!-- #footer -->
 
 {% block javascripts %}
     <script src="{{ asset('assets/js/jquery-2.1.3.min.js') }}"></script>
@@ -207,6 +167,26 @@
         });
     </script>
 {% endblock %}
+
+{% for message in app.flashes('success') %}
+    <script type="text/javascript">
+        jQuery( document ).ready(function() {
+            jQuery('#modal_alert').modal('toggle')
+        });
+    </script>
+    <div id="modal_alert" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>{{ message }}.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% endfor %}
 
 </body>
 </html>

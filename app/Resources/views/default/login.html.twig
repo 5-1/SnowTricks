@@ -3,6 +3,7 @@
     {{ parent() }}
 {% endblock %}
 {% block header %}
+    {% include 'includes/header.html.twig' %}
 {% endblock %}
 {% block body %}
     <!DOCTYPE html>
@@ -215,7 +216,7 @@
         <button type="submit" id="login">Connexion</button>
     </div>
     </br>
-    <a href="{{ path('reset') }}">Mot de passe oublier ?</a>
+    <a href="{{ path('reset') }}">Mot de passe oublié ?</a>
 
 </form>
 

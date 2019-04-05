@@ -17,7 +17,7 @@ body {
 
 form {
     position: absolute;
-    top: 50%;
+    top: 450px;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -230,4 +230,22 @@ form .inputGroup2 #showPasswordToggle input:disabled ~ .indicator {
 
 form .inputGroup2 #showPasswordToggle input:disabled ~ .indicator:after {
     visibility: hidden;
+}
+
+h1.logo {
+    margin-top: 11px;
+    color: white;
+    font-size: 36px;
+    display: inline-flex;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 15px 0;
+    color: #3A4F52;
+    font-family: 'Raleway';
+}
+
+h2.footer-block{
+    font-family: Raleway;
+    font-size: 30px;
 }
