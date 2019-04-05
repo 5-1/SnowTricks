@@ -1,11 +1,17 @@
 {% extends 'base.html.twig' %}
-
     {% block body %}
         <style>
+            #header {
+            {% if trick.images[0] is defined %} background-image: url('../../{{ trick.images[0].webPath}}');
+
+            {% else %} background-image: url('{{ asset('assets/images/header-bg.jpg') }}');
+
+            {% endif %} box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.8);
+            }
+
             .thumbnail {
                 position: relative;
-                width: 285px;
-                height: 200px;
+                height: 250px;
                 overflow: hidden;
             }
 
@@ -18,23 +24,146 @@
                 margin: auto;
             }
         </style>
-
+        <!-- header -->
         <div id="header" class="content-block">
-
             <section class="center">
                 <div class="slogan">
                     {{ trick.title }}
                 </div>
-                <div class="secondary-slogan">
-                    Ecrit le {{ trick.createdAt | date('d/m/Y') }}.
+                <div class="actions">
+                    {% if app.user %}
+                        <a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-o btn-lg ">
+                            <i class="fa fa-pencil"></i>
+                        </a>
+                        </br>
+                        <a href="" data-toggle="modal" data-target="#delete"
+                           class="btn btn-o btn-lg pull-right"><i class="fa fa-trash"></i> </a>
+                    {% endif %}
                 </div>
             </section>
-        </div><!-- header -->
+        </div>
+        <!-- header -->
+
+        <div class="separatorinvisible">
+        </div>
+
+        <div class="container">
+            <div class="row">
+                {% for image in trick.images %}
+                        <div class="item {{ (loop.first)? "active":"" }}">
+                            <div class="col-lg-3 col-sm-12">
+                                    <a class="thumbnail" style="max-height: 400px" href="#" data-image-id=""
+                                       data-toggle="modal" data-title=""
+                                       data-image="{{ asset(''~ image.webPath) }}"
+                                       data-target="">
+                                        <img class="img-thumbnail"
+                                             src="{{ asset(''~ image.webPath) }}"
+                                             alt="Another alt text ( sa marche pas )">
+                                    </a>
+                            </div>
+                    {% endfor %}
+                    {% for video in trick.videos %}
+                        <div class="item {{ (loop.first)? "active":"" }}">
+                            <div class="col-md-3">
+                                <iframe height="200px" src="{{ video.url }}" allowfullscreen=""
+                                        frameborder="0">
+                                </iframe>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="">
+                    <div class="centertext">
+                        <h3>Description :</h3>
+                    </div>
+                </div>
+                <div>
+                    <p>{{ trick.content }}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="title-page">
+                    <div class="centertext">
+                        <h3>{{ trick.title }} ,
+                            {{ trick.category | raw }},
+                            écrit le {{ trick.createdAt | date('d/m/Y') }}
+                            à {{ trick.createdAt | date('H:i') }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="separator">
+        </div>
+
+        <div class="container">
+        <div class="row">
+        <div class="centertext">
+            <h1>Section Commentaire</h1>
+        </div>
+        </div>
+        {% if  app.user %}
+            {{ form_start(commentForm) }}
+            {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
+            <button type="submit" class="btn btn-success"> Commenter !</button>
+            {{ form_end(commentForm) }}
+            </br>
+        {% else %}
+            <p> Vous devez vous connectez pour commentez </p>
+        {% endif %}
+        {% for comment in trick.comments() %}
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-1">
+                        <div class="thumbnail-comment">
+                            <img class="img-responsive-comment user-photo"
+                                 src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
+                        </div><!-- /thumbnail -->
+                    </div><!-- /col-sm-1 -->
+
+                    <div class="col-sm-5">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <strong>{{ comment.user.username }}</strong> <span
+                                        class="text-muted">{{ comment.createdAt | date ('d/m/Y à H:i') }}</span>
+                            </div>
+                            <div class="panel-body">
+                                {{ comment.content | raw }}
+                            </div><!-- /panel-body -->
+                        </div><!-- /panel panel-default -->
+                    </div><!-- /col-sm-5 -->
+                </div>
+            </div>
+            </div>
+            </div>
+
+        {% endfor %}
+        <section class="block-body">
+            <div class="row" id="tricks" data-offset="0" data-limit="4" data-web-path="{{ asset('') }}"
+            </div>
+            <div class="text-center">
+                <button id="more" type="button" class="btn btn-o btn-lg ">Voir plus <i id="load"</i>
+                </button>
+            </div>
+
+        </section>
+        <div class="separatorinvisible">
+        </div>
+
 
 
         <div class="modal" id="delete">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content ">
                     <div class="modal-header">
                         <h4 class="modal-title">Suppression</h4>
                     </div>
@@ -49,173 +178,16 @@
                                 Voir la figure
                             </a>
                             <input type="submit" value="Supprimer" class="btn btn-danger"/>
-
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        </div>
+        </div>
 
 
 
-        <div class="content-block" id="blog">
-            <div class="container blog-sec">
-                <header class="block-heading cleafix">
-                    <a href="{{ path('trick_add') }}" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
-                    <a href="{{ path('trick_edit', {'id': trick.id}) }}" class="btn btn-o btn-lg pull-right">Editer la
-                        figure !</a>
-                    <a href="" data-toggle="modal" data-target="#delete"
-                       class="btn btn-o btn-lg pull-right">Supprimer la figure !</a>
 
-
-                    <div class="title-page">
-                        <p class="main-header">{{ trick.title }}</p>
-                        <p class="sub-header">Ecrit le {{ trick.createdAt | date('d/m/Y') }}
-                            à {{ trick.createdAt | date('H:i') }}</p>
-                    </div>
-                </header>
-                <article>
-                    <div class="container first-content">
-                        <div class="row">
-                            <div class="col-xs-8 col-md-9 col-xs-push-2 col-md-push-1">
-                                <p>
-                                <h3>Catégorie: {{ trick.category | raw }} </h3>
-                                <h3>Description:</h3> {{ trick.content | raw }}
-                                </p>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-xs-12 text-center">
-                                    <h2 class="soustitre">
-                                        Photos</h2>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-
-                                {% for image in trick.images %}
-                                    <div class="item {{ (loop.first)? "active":"" }}">
-
-
-                                        <div class="col-md-3 col-lg-3 col-sm-3">
-                                            <a class="thumbnail" style="max-height: 400px" href="#" data-image-id=""
-                                               data-toggle="modal" data-title=""
-                                               data-image="{{ asset(''~ image.webPath) }}"
-                                               data-target="#image-gallery">
-                                                <img class="img-thumbnail"
-                                                     src="{{ asset(''~ image.webPath) }}"
-                                                     alt="Another alt text ( sa marche pas )">
-
-                                            </a>
-
-
-                                            <div class="modal fade" id="image-gallery" tabindex="-1" role="dialog"
-                                                 aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog modal-lg">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="image-gallery-title"></h4>
-                                                            <button type="button" class="close"
-                                                                    data-dismiss="modal"><span
-                                                                        aria-hidden="true">×</span><span
-                                                                        class="sr-only">Close</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <img id="image-gallery-image"
-                                                                 class="img-responsive col-md-12"
-                                                                 src="{{ asset(''~ image.webPath) }}">
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary float-left"
-                                                                    id="show-previous-image"><i
-                                                                        class="fa fa-arrow-left"></i>
-                                                            </button>
-
-                                                            <button type="button" id="show-next-image"
-                                                                    class="btn btn-secondary float-right"><i
-                                                                        class="fa fa-arrow-right"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                {% endfor %}
-
-
-
-                                {% for video in trick.videos %}
-                                    <div class="item {{ (loop.first)? "active":"" }}">
-                                        <div class="col-md-3">
-                                            <iframe width="100%" height="100%" src="{{ video.url }}" allowfullscreen=""
-                                                    frameborder="0">
-                                            </iframe>
-                                        </div>
-                                    </div>
-
-                                {% endfor %}
-
-
-                            </div>
-
-
-                            id="commentaires">
-                            <h1>Section Commentaire</h1>
-                            {% if  app.user %}
-
-                                {{ form_start(commentForm) }}
-                                {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
-
-                                <button type="submit" class="btn btn-success"> Commenter !</button>
-                                {{ form_end(commentForm) }}
-                                </br>
-                            {% else %}
-                                <p> Vous devez vous connectez pour commentez </p>
-                            {% endif %}
-                            {% for comment in trick.comments() %}
-
-                                <div class="container">
-
-
-                                    <div class="row">
-                                        <div class="col-sm-1">
-                                            <div class="thumbnail-comment">
-                                                <img class="img-responsive-comment user-photo"
-                                                     src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                                            </div><!-- /thumbnail -->
-                                        </div><!-- /col-sm-1 -->
-
-                                        <div class="col-sm-5">
-                                            <div class="panel panel-default">
-                                                <div class="panel-heading">
-                                                    <strong>{{ comment.user.username }}</strong> <span
-                                                            class="text-muted">{{ comment.createdAt | date ('d/m/Y à H:i') }}</span>
-                                                </div>
-                                                <div class="panel-body">
-                                                    {{ comment.content | raw }}
-                                                </div><!-- /panel-body -->
-                                            </div><!-- /panel panel-default -->
-                                        </div><!-- /col-sm-5 -->
-                                    </div>
-                                </div>
-
-                            {% endfor %}
-
-
-                        </div><!-- /container -->
-
-                    </div>
-
-                    </section>
-
-
-            </div>
-
-        </div><!-- #blog -->
 
     {% endblock %}

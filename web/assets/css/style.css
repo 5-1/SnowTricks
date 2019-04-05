@@ -729,7 +729,7 @@ button.navbar-toggle.collapsed {
 }
 
 .thumbnail-comment {
-    padding: 0px;
+    padding: 0%;
 }
 
 .panel {
@@ -805,12 +805,11 @@ button.navbar-toggle.collapsed {
 }
 
 .centertext {
-    width: 1000px; /* à modifier selon vos besoins */
+    width: 100%; /* à modifier selon vos besoins */
     overflow: hidden; /* les dépassements seront masqués */
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    width: 90em
 }
 
 @media (min-width: 320px) {
