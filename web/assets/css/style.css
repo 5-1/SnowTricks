@@ -854,9 +854,34 @@ button.navbar-toggle.collapsed {
 }
 
 @media (max-width: 1000px) {
-    .navbar-def{
+    .navbar-def {
         display: none;
     }
+
+}
+
+#media-plus {
+    display: none;
+
+}
+
+#media-remove {
+    display: none;
+}
+@media (max-width: 1000px) {
+    #media {
+        display: none;
+    }
+    #media-plus {
+        display: block;
+
+    }
+    #media-remove {
+        display: block;
+
+    }
+
+}
     
 }
 
