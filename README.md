@@ -43,7 +43,6 @@ If you are using LAMPP on Linux, check your permissions: Go to /opt/lampp/htdocs
 
 Change permissions for everybody to be able to update informations in every repository's folders.
 
-
 2.Symfony 3.4 and bundles installations Open bash in folder and type:
 
      composer install
@@ -57,7 +56,8 @@ Then
      php bin/console doctrine:schema:update --force
    
 Now, you can go on the URL:
-http://localhost/snowtricks/web (if you put the folder on your apache root)
+
+[http://localhost/snowtricks/web](http://localhost/snowtricks/web) (if you put the folder on your apache root)
 
 And enjoy :)
 
