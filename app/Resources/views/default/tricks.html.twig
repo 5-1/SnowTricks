@@ -57,7 +57,7 @@
                     {% for image in trick.images %}
                         <div class="item {{ (loop.first)? "active":"" }}">
                             <div class="col-lg-3 col-sm-12">
-                                <a class="thumbnail" style="max-height: 400px" href="#" data-image-id=""
+                                <a class="thumbnail" style="max-height: 400px" href="{{ asset(''~ image.webPath) }}" data-image-id=""
                                    data-toggle="modal" data-title=""
                                    data-image="{{ asset(''~ image.webPath) }}"
                                    data-target="">
@@ -204,8 +204,7 @@
                                  "                <div class=\"row\">\n" +
                                  "                    <div class=\"col-sm-1\">\n" +
                                  "                        <div class=\"thumbnail-comment\">\n" +
-                                 "                            <img class=\"img-responsive-comment user-photo\"\n" +
-                                 "                                 src=\"https://ssl.gstatic.com/accounts/ui/avatar_2x.png\">\n" +
+                                 "                             <span class=\"avatar avatar-lg bg-gradient-blue mr-3\">" + comments['user'].slice(0,1) + "</span>\n"+
                                  "                        </div><!-- /thumbnail -->\n" +
                                  "                    </div><!-- /col-sm-1 -->\n" +
                                  "\n" +
