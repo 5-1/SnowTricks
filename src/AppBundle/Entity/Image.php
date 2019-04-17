@@ -200,7 +200,7 @@ class Image
      */
     protected function getUploadRootDir()
     {
-        return __DIR__ . '../../../../' . $this->getUploadDir();
+        return __DIR__ . '/../../../web/' . $this->getUploadDir();
     }
 
     /**
