@@ -784,6 +784,11 @@ button.navbar-toggle.collapsed {
     margin-left: 85%;
 }
 
+.actions2 {
+    position: absolute;
+    top: 850px;
+    margin-left: 79%;
+}
 .separator {
     display: block;
     margin-top: 0.5em;
