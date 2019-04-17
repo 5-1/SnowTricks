@@ -47,20 +47,26 @@
         <div class="separatorinvisible">
         </div>
 
+
+
         <div class="container">
-            <div class="row">
-                {% for image in trick.images %}
+            <button id="media-plus" type="button" class="btn btn-o btn-lg ">Voir média </button>
+            <div id="media">
+                <button id="media-remove" type="button" class="btn btn-o btn-lg ">Masquer </button>
+                <div class="row">
+                    {% for image in trick.images %}
                         <div class="item {{ (loop.first)? "active":"" }}">
                             <div class="col-lg-3 col-sm-12">
-                                    <a class="thumbnail" style="max-height: 400px" href="#" data-image-id=""
-                                       data-toggle="modal" data-title=""
-                                       data-image="{{ asset(''~ image.webPath) }}"
-                                       data-target="">
-                                        <img class="img-thumbnail"
-                                             src="{{ asset(''~ image.webPath) }}"
-                                             alt="Another alt text ( sa marche pas )">
-                                    </a>
+                                <a class="thumbnail" style="max-height: 400px" href="{{ asset(''~ image.webPath) }}" data-image-id=""
+                                   data-toggle="modal" data-title=""
+                                   data-image="{{ asset(''~ image.webPath) }}"
+                                   data-target="">
+                                    <img class="img-thumbnail"
+                                         src="{{ asset(''~ image.webPath) }}"
+                                         alt="Another alt text ( sa marche pas )">
+                                </a>
                             </div>
+                        </div>
                     {% endfor %}
                     {% for video in trick.videos %}
                         <div class="item {{ (loop.first)? "active":"" }}">
@@ -105,80 +111,53 @@
         </div>
 
         <div class="container">
-        <div class="row">
-        <div class="centertext">
-            <h1>Section Commentaire</h1>
-        </div>
-        </div>
-        {% if  app.user %}
-            {{ form_start(commentForm) }}
-            {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
-            <button type="submit" class="btn btn-success"> Commenter !</button>
-            {{ form_end(commentForm) }}
-            </br>
-        {% else %}
-            <p> Vous devez vous connectez pour commentez </p>
-        {% endif %}
-        {% for comment in trick.comments() %}
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-1">
-                        <div class="thumbnail-comment">
-                            <img class="img-responsive-comment user-photo"
-                                 src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png">
-                        </div><!-- /thumbnail -->
-                    </div><!-- /col-sm-1 -->
-
-                    <div class="col-sm-5">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <strong>{{ comment.user.username }}</strong> <span
-                                        class="text-muted">{{ comment.createdAt | date ('d/m/Y à H:i') }}</span>
-                            </div>
-                            <div class="panel-body">
-                                {{ comment.content | raw }}
-                            </div><!-- /panel-body -->
-                        </div><!-- /panel panel-default -->
-                    </div><!-- /col-sm-5 -->
+            <div class="row">
+                <div class="centertext">
+                    <h1>Section Commentaire</h1>
                 </div>
             </div>
+            {% if  app.user %}
+                {{ form_start(commentForm) }}
+                {{ form_row(commentForm.content, {'attr': {'placeholder': "Votre commentaire"}}) }}
+                <button type="submit" class="btn btn-success"> Commenter !</button>
+                {{ form_end(commentForm) }}
+                </br>
+            {% else %}
+                <p> Vous devez vous connectez pour commentez </p>
+            {% endif %}
+
+            <section class="block-body">
+                <div class="row" id="comments" data-offset="0" data-limit="4"></div>
+                <div class="text-center">
+                    <button id="more" type="button" class="btn btn-o btn-lg ">Voir plus <i id="load"
+                                                                                           class="fa fa-spinner fa-spin"></i>
+                    </button>
+                </div>
+
+            </section>
+            <div class="separatorinvisible">
             </div>
-            </div>
-
-        {% endfor %}
-        <section class="block-body">
-            <div class="row" id="tricks" data-offset="0" data-limit="4" data-web-path="{{ asset('') }}"
-            </div>
-            <div class="text-center">
-                <button id="more" type="button" class="btn btn-o btn-lg ">Voir plus <i id="load"</i>
-                </button>
-            </div>
-
-        </section>
-        <div class="separatorinvisible">
-        </div>
 
 
-
-        <div class="modal" id="delete">
-            <div class="modal-dialog">
-                <div class="modal-content ">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Suppression</h4>
-                    </div>
-                    <div class="modal-body">
-                        La suppression d'un article étant définitive, veuillez être sûr de votre action.
-                    </div>
-                    <div class="modal-footer">
-                        <form action="{{ path('trick_delete', {'id': trick.id}) }}" method="post">
-                            <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
-                            <a href="{{ path('tricks_show', {'id': trick.id}) }}" class="btn btn-default">
-                                <i class="glyphicon glyphicon-chevron-left"></i>
-                                Voir la figure
-                            </a>
-                            <input type="submit" value="Supprimer" class="btn btn-danger"/>
-                        </form>
+            <div class="modal" id="delete">
+                <div class="modal-dialog">
+                    <div class="modal-content ">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Suppression</h4>
+                        </div>
+                        <div class="modal-body">
+                            La suppression d'un article étant définitive, veuillez être sûr de votre action.
+                        </div>
+                        <div class="modal-footer">
+                            <form action="{{ path('trick_delete', {'id': trick.id}) }}" method="post">
+                                <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
+                                <a href="{{ path('tricks_show', {'id': trick.id}) }}" class="btn btn-default">
+                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                    Voir la figure
+                                </a>
+                                <input type="submit" value="Supprimer" class="btn btn-danger"/>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,3 +170,96 @@
 
 
     {% endblock %}
+ {% block javascripts %}
+
+     {{ parent() }}
+     <script>
+         jQuery(document).ready(function () {
+
+             var offset = jQuery('#comments').data('offset');
+             var limit = jQuery('#comments').data('limit');
+             var total = 0;
+
+             function request(offset, limit) {
+                 jQuery.ajax({
+                     url: "{{ path('comments_more',{'id': trick.id}) }}",
+                     method: "POST",
+                     data: {
+                         'offset': offset,
+                         'limit': limit,
+                     },
+                     success: function (result) {
+                         total = result.length;
+                         if (total < limit) {
+                             //$("#more").prop('disabled',true);
+                             jQuery("#more").hide();
+                         }
+
+                         for (var i = 0; i < result.length; i++) {
+                             var comments = result[i];
+
+                             var html =
+                                 "\n" +
+                                 "            <div class=\"container\">\n" +
+                                 "                <div class=\"row\">\n" +
+                                 "                    <div class=\"col-sm-1\">\n" +
+                                 "                        <div class=\"thumbnail-comment\">\n" +
+                                 "                             <span class=\"avatar avatar-lg bg-gradient-blue mr-3\">" + comments['user'].slice(0,1) + "</span>\n"+
+                                 "                        </div><!-- /thumbnail -->\n" +
+                                 "                    </div><!-- /col-sm-1 -->\n" +
+                                 "\n" +
+                                 "                    <div class=\"col-sm-5\">\n" +
+                                 "                        <div class=\"panel panel-default\">\n" +
+                                 "                            <div class=\"panel-heading\">\n" +
+                                 "                                <strong> " + comments['user'] + "</strong> <span\n" +
+                                 "                                        class=\"text-muted\"> " + '' + "</span>\n" +
+                                 "                            </div>\n" +
+                                 "                            <div class=\"panel-body\">\n" +
+                                 "                                " + comments['content'] + "\n" +
+                                 "                            </div><!-- /panel-body -->\n" +
+                                 "                        </div><!-- /panel panel-default -->\n" +
+                                 "                    </div><!-- /col-sm-5 -->\n" +
+                                 "                </div>\n" +
+                                 "            </div>\n" +
+                                 "            </div>\n" +
+                                 "            </div>\n"
+
+
+                             jQuery('#comments').append(html);
+                         }
+
+                     }
+                 });
+                 jQuery('#load').hide();
+                 jQuery('#comments').animate({
+                     opacity: 1,
+                 }, 1000);
+
+             }
+
+
+             request(offset, limit);
+
+             offset = jQuery('#comments').data("offset") + limit;
+
+             jQuery('#more').on('click', function () {
+                 jQuery('#comments').animate({
+                     opacity: 0,
+                 }, 100);
+                 request(offset, limit);
+                 offset += jQuery('#comments').data("offset") + limit;
+             });
+
+             jQuery('#media-plus').on('click', function () {
+                 jQuery('#media').show();
+                 jQuery('#media-plus').hide();
+
+             });
+             jQuery('#media-remove').on('click', function () {
+                 jQuery('#media').hide();
+                 jQuery('#media-plus').show();
+             });
+         });
+     </script>
+
+ {% endblock %}

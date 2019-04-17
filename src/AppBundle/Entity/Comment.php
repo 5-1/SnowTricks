@@ -46,7 +46,7 @@ class Comment
     private $trick;
 
     /**
-     * @var string
+     * @var User
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User", inversedBy="comment")
      *
      */
@@ -137,7 +137,7 @@ class Comment
     }
 
     /**
-     * @return string
+     * @return User|null
      */
     public function getUser()
     {
@@ -145,7 +145,7 @@ class Comment
     }
 
     /**
-     * @param string $user
+     * @param User $user
      */
     public function setUser($user)
     {

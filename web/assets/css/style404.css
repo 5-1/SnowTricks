@@ -18,14 +18,16 @@ body, html {
 }
 .content {
     padding: 5rem 3rem 0 25rem;
-    position: relative; z-index: 10;
-    font-family: 'Source Sans Pro', sans-serif; color: #FFF;
-h3 {
+    position: relative;
+    z-index: 10;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #FFF;
+}
+.h3 {
     margin: 0 0 .8rem;
     font-size: 2.625rem; font-weight: 900; line-height: 120%;
 }
-p {
-    font-size: 1.25rem; font-weight: normal; line-height: 150%; color: #d1e2ed;
-span {text-decoration: line-through;}
-}
-}
+.p {
+    font-size: 1.25rem; font-weight: normal; line-height: 150%; color: #d1e2ed;}
+.span {
+    text-decoration: line-through}
