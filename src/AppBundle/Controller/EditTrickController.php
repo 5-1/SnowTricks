@@ -36,7 +36,7 @@ class EditTrickController extends Controller
             $trick = $form->getData();
             $manager->flush();
 
-            $this->addFlash("success", "Votre figure à bien était modifiée");
+            $this->addFlash("success", "Votre figure a bien été modifiée");
 
             return $this->redirectToRoute('tricks_show', ['id' => $trick->getId()]);
         }
