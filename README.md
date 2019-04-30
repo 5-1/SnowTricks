@@ -34,7 +34,7 @@ Installation
 --------------
 1.Download project or cline it with github =>
 
-    git clone https://github.com/DamienVauchel/snow_tricks.git
+    git clone https://github.com/5-1/SnowTricks.git
     
  
 If you are using LAMPP on Linux, check your permissions: Go to /opt/lampp/htdocs/ open a bash and type:
