@@ -3,13 +3,11 @@
 namespace AppBundle\Controller;
 
 
-use Doctrine\Common\Persistence\ObjectManager;
-use AppBundle\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends Controller
 {
