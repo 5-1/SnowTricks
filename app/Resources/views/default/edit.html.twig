@@ -11,8 +11,8 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <h1>Modification d'un Tricks</h1>
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 align="center">Modification d'un Tricks</h1>
 
                     <div class="box">
                         {{ form_start(form) }}
@@ -20,11 +20,15 @@
                         {{ form_row(form.slug, {'attr': {'placeholder': "tittre-format-url"}}) }}
                         {{ form_row(form.category) }}
                         {{ form_row(form.content, {'attr': {'placeholder': "Description du tricks"}}) }}
-
+                        <hr>
+                        <label>Images</label>
                         {{ form_widget(form.images) }}
-                        {{ form_row(form.videos, {'attr': {'placeholder': "Lien Youtube du tricks"}}) }}
+                        <hr>
+                        <label>Videos</label>
+                        {{ form_widget(form.videos, {'attr': {'placeholder': "Lien Youtube du tricks"}}) }}
+                        <hr>
 
-                        <button type="submit" class="btn btn-success"> Ajouter le tricks</button>
+                        <button type="submit" class="btn btn-success center-block"> Modifiez le tricks</button>
                         {{ form_end(form) }}
 
                     </div>

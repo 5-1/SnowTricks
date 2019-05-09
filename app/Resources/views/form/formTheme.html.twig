@@ -9,7 +9,8 @@
 {% endblock %}
 
 {% block _appbundle_trick_images_entry_row %}
-    <div class="form-group">
+    <div class="form-group
+">
         {% if form.vars.value %}
             <img src="{{ asset(form.vars.value.webPath) }}" alt="" class="preview">
         {% endif %}

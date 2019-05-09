@@ -1,6 +1,7 @@
 function addDeleteLink($entry) {
 
-    var $removeFormButton = jQuery('<button type="button" class="btn btn-success" >Supprimer</button>');
+    var $removeFormButton = jQuery('<div class="text-center"><button type="button" class="btn btn-danger">' +
+        '<i class="fa fa-trash" aria-hidden="true"></i>\n</button></div>');
 
     $entry.append($removeFormButton);
 

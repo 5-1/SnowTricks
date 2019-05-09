@@ -12,20 +12,24 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <h1>Ajout d'un Tricks</h1>
+                    <h1 align="center">Ajout d'un Tricks</h1>
 
                     {% if app.user %}
 
                     <div class="box">
                         {{ form_start(form) }}
                         {{ form_row(form.title, {'attr': {'placeholder': "Titre du  tricks"}}) }}
+                        <hr>
                         {{ form_row(form.videos, {'attr': {'placeholder': "Lien Youtube ou Dailymotion du tricks"}}) }}
+                        <hr>
                         {{ form_row(form.slug, {'attr': {'placeholder': "tittre-format-url"}}) }}
                         {{ form_row(form.category) }}
                         {{ form_row(form.content, {'attr': {'placeholder': "Description du tricks"}}) }}
+                        <hr>
                         {{ form_row(form.images) }}
+                        <hr>
 
-                        <button type="submit" class="btn btn-success"> Ajouter le tricks</button>
+                        <button type="submit" class="btn btn-success center-block"> Ajouter le tricks</button>
                         {{ form_end(form) }}
                         {% else %}
                         <p> vous devez vous connecter pour ajouter une figure ... d'ailleurs, comment êtes-vous arriver ici?</p>
