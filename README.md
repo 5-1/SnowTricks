@@ -11,6 +11,9 @@ This project is linked to Openclassrooms DA PHP Symfony studies.
 It's the 6th projets in which it is asked to create a community website called 
 Snowtricks.
 
+![CODACY](https://i.imgur.com/GzrGMoe.png?raw=true "Title")
+
+https://i.imgur.com/GzrGMoe.png
 Require
 --------------
 
