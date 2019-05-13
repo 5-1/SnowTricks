@@ -6,9 +6,9 @@ use AppBundle\Entity\User;
 use AppBundle\Form\RegistrationType;
 use AppBundle\Mailer\SendMailer;
 use Doctrine\Common\Persistence\ObjectManager;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
@@ -83,8 +83,10 @@ class SecurityController extends Controller
 
         return $this->render('default/login.html.twig', [
             'error' => $error,
-        ]);
+        ]
+        );
     }
+
 
     /**
      * @Route("/deconnexion", name="security_logout")

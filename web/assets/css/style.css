@@ -867,7 +867,6 @@ button.navbar-toggle.collapsed {
 
 #media-plus {
     display: none;
-
 }
 
 #media-remove {
@@ -886,6 +885,42 @@ button.navbar-toggle.collapsed {
 
     }
 
+}
+
+@font-face {
+    font-family: 'snow';
+    src: url('../fonts/snowtt-webfont.eot');
+    src: url('../fonts/snowtt-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../fonts/snowtt-webfont.woff2') format('woff2'),
+    url('../fonts/snowtt-webfont.woff') format('woff'),
+    url('../fonts/snowtt-webfont.ttf') format('truetype'),
+    url('../fonts/snowtt-webfont.svg#ice-snownormal') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+.snow {
+    font-size: 50px;
+    font-family: 'snow';
+    color: black;
+
+}
+
+.snowslogan {
+    font-size: 4em;
+    margin-bottom: 15px;
+    line-height: 1em;
+    font-family: 'snow', sans-serif;
+    color: white;
+    font-weight: bold;
+
+}
+.bottom-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .avatar{color:#fff;background-color:#adb5bd;display:inline-flex;align-items:center;justify-content:center;font-size:1rem;border-radius:50%;height:48px;width:48px}.avatar img{width:100%;border-radius:50%}.avatar+.avatar-content{display:inline-block;margin-left:.75rem}.avatar-lg{width:58px;height:58px;font-size:1.5em}.avatar-sm{width:38px;height:38px;font-size:.765625rem}

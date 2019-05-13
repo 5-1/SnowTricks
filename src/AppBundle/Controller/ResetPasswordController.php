@@ -12,8 +12,6 @@ use AppBundle\Entity\User;
 use AppBundle\Form\EmailType;
 use AppBundle\Form\ResetPasswordType;
 use AppBundle\Mailer\SendMailer;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\FormError;
@@ -22,7 +20,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Validator\Constraints\Email;
 
 class ResetPasswordController extends Controller
 {
