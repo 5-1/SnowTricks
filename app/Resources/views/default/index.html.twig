@@ -5,15 +5,13 @@
 
 {% block body %}
     <style>
-        .btn-actions{
-            background-color: white;
-        }
+
     </style>
 
     <div id="header" class="content-block">
 
         <section class="center">
-            <div class="slogan">
+            <div class="snowslogan">
                 SNOWTRICKS
             </div>
             <div class="secondary-slogan">
@@ -25,6 +23,9 @@
             </div>
         </section>
     </div><!-- header -->
+    <div class="title-page">
+        <h1 class="snow">TOUS LES TRICKS</h1>
+    </div>
 
 
 
@@ -33,11 +34,8 @@
         <div class="container blog-sec">
             <header class="block-heading cleafix">
                 {% if app.user %}
-                <a href="{{ path('trick_add') }}" class="btn btn-o btn-lg pull-right">Ajoutez une figure !</a>
+                <a href="{{ path('trick_add') }}" class="btn btn-success btn-lg pull-right">Ajoutez une figure !</a>
                 {% endif %}
-                <div class="title-page">
-                    <h1 class="main-header">TOUS LES TRICKS</h1>
-                </div>
             </header>
 
             <section class="block-body">
@@ -45,7 +43,7 @@
                      data-base-url="{{ path('index') }}" data-csrf="{{ csrf_token('delete-item') }}">
                 </div>
                 <div class="text-center">
-                    <button id="more" type="button" class="btn btn-o btn-lg ">Voir plus <i id="load" class="fas fa-spinner fa-spin"></i>
+                    <button id="more" type="button" class="btn btn-suc btn-lg ">Voir plus <i id="load" class="fas fa-spinner fa-spin"></i>
                     </button>
                 </div>
             </section>

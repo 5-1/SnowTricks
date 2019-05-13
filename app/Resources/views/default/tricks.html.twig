@@ -27,7 +27,7 @@
         <!-- header -->
         <div id="header" class="content-block">
             <section class="center">
-                <div class="slogan">
+                <div class="snowslogan">
                     {{ trick.title }}
                 </div>
                 <div class="actions">
@@ -50,9 +50,9 @@
 
 
         <div class="container">
-            <button id="media-plus" type="button" class="btn btn-o btn-lg ">Voir média </button>
+           <center> <button id="media-plus" type="button" class="btn btn-info">Voir les images et vidéos </button> </center>
             <div id="media">
-                <button id="media-remove" type="button" class="btn btn-o btn-lg ">Masquer </button>
+                <button id="media-remove" type="button" class="btn btn-info">Masquer </button>
                 <div class="row">
                     {% for image in trick.images %}
                         <div class="item {{ (loop.first)? "active":"" }}">
@@ -151,8 +151,7 @@
                         <div class="modal-footer">
                             <form action="{{ path('trick_delete', {'id': trick.id}) }}" method="post">
                                 <input type="hidden" name="token" value="{{ csrf_token('delete-item') }}"/>
-                                <a href="{{ path('tricks_show', {'id': trick.id}) }}" class="btn btn-default">
-                                    <i class="glyphicon glyphicon-chevron-left"></i>
+                                <a href="{{ path('tricks_show', {'id': trick.id}) }}" class="btn btn-success">
                                     Voir la figure
                                 </a>
                                 <input type="submit" value="Supprimer" class="btn btn-danger"/>
