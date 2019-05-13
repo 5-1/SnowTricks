@@ -4,7 +4,7 @@ Snowtricks
 Welcome to snowtricks!
 on App that uses Symfony 3.4, noted B on codacy.
 
-![CODACY](https://i.imgur.com/EVDvDru.png?raw=true "Title")
+![CODACY](https://i.imgur.com/GzrGMoe.png?raw=true "Title")
 
 
 What's inside?
