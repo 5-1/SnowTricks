@@ -1,6 +1,8 @@
 Snowtricks
 ========================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fed24e28a686456a9f0d699efceebc82)](https://app.codacy.com/app/5-1/SnowTricks?utm_source=github.com&utm_medium=referral&utm_content=5-1/SnowTricks&utm_campaign=Badge_Grade_Dashboard)
+
 Welcome to snowtricks!
 on App that uses Symfony 3.4, noted B on codacy.
 
