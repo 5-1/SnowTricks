@@ -33,6 +33,7 @@ class AppAvailabilityFunctionalTest extends WebTestCase
             ['/ajouter-une-figure',302],
             ['/deconnexion',302],
             ['/trick/13',200],
+
         ];
     }
     /**
@@ -54,8 +55,10 @@ class AppAvailabilityFunctionalTest extends WebTestCase
     public function urlLoginProvider()
     {
         return [
+
             ['/editer-une-figure/13',200],
             ['/ajouter-une-figure',200],
+
         ];
     }
 }

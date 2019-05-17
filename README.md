@@ -1,8 +1,13 @@
 Snowtricks
 ========================
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/fed24e28a686456a9f0d699efceebc82)](https://app.codacy.com/app/5-1/SnowTricks?utm_source=github.com&utm_medium=referral&utm_content=5-1/SnowTricks&utm_campaign=Badge_Grade_Dashboard)
+
 Welcome to snowtricks!
-on App that uses Symfony 3.4
+on App that uses Symfony 3.4, noted B on codacy.
+
+![CODACY](https://i.imgur.com/GzrGMoe.png?raw=true "Title")
+
 
 What's inside?
 --------------
@@ -36,7 +41,7 @@ Installation
 --------------
 1.Download project or cline it with github =>
 
-    git clone https://github.com/DamienVauchel/snow_tricks.git
+    git clone https://github.com/5-1/SnowTricks.git
     
  
 If you are using LAMPP on Linux, check your permissions: Go to /opt/lampp/htdocs/ open a bash and type:
