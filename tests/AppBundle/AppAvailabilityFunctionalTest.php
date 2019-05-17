@@ -26,7 +26,13 @@ class AppAvailabilityFunctionalTest extends WebTestCase
             ['/inscription',200],
             ['/connexion',200],
             ['/reset',200],
-            ['/editer-une-figure/4',302],
+            ['/activation/token',302],
+            ['/supprimer-une-figure/13',302],
+            ['/editer-une-figure/13',302],
+            ['/reset_password/token',302],
+            ['/ajouter-une-figure',302],
+            ['/deconnexion',302],
+            ['/trick/13',200],
         ];
     }
     /**
@@ -48,7 +54,8 @@ class AppAvailabilityFunctionalTest extends WebTestCase
     public function urlLoginProvider()
     {
         return [
-            ['/editer-une-figure/4',200],
+            ['/editer-une-figure/13',200],
+            ['/ajouter-une-figure',200],
         ];
     }
 }
