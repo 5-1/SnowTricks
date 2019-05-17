@@ -6,7 +6,6 @@ Snowtricks
 Welcome to snowtricks!
 on App that uses Symfony 3.4, noted B on codacy.
 
-![CODACY](https://i.imgur.com/GzrGMoe.png?raw=true "Title")
 
 
 What's inside?
@@ -16,7 +15,6 @@ This project is linked to Openclassrooms DA PHP Symfony studies.
 It's the 6th projets in which it is asked to create a community website called 
 Snowtricks.
 
-![CODACY](https://i.imgur.com/GzrGMoe.png?raw=true "Title")
 
 Require
 --------------
