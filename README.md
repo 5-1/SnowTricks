@@ -13,7 +13,6 @@ Snowtricks.
 
 ![CODACY](https://i.imgur.com/GzrGMoe.png?raw=true "Title")
 
-https://i.imgur.com/GzrGMoe.png
 Require
 --------------
 
