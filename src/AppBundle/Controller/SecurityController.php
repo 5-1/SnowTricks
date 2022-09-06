@@ -6,14 +6,15 @@ use AppBundle\Entity\User;
 use AppBundle\Form\RegistrationType;
 use AppBundle\Mailer\SendMailer;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 
-class SecurityController extends Controller
+class SecurityController extends AbstractController
 {
     /**
      * @var AuthenticationUtils
@@ -49,7 +50,7 @@ class SecurityController extends Controller
      */
 
 
-    public function registration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
+    public function registration(Request $request, EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
         $form = $this->createForm(RegistrationType::class, $user);
@@ -69,7 +70,7 @@ class SecurityController extends Controller
 
             return $this->redirectToRoute('security_login');
         }
-        return $this->render('default/registration.html.twig', ['form' => $form->createView()
+        return $this->render('views/default/registration.html.twig', ['form' => $form->createView()
 
         ]);
     }
@@ -81,7 +82,7 @@ class SecurityController extends Controller
     {
         $error = $this->authenError->getLastAuthenticationError();
 
-        return $this->render('default/login.html.twig', [
+        return $this->render('views/default/login.html.twig', [
             'error' => $error,
         ]
         );

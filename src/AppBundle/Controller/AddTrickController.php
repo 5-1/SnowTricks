@@ -8,12 +8,12 @@ use AppBundle\Form\TrickType;
 use AppBundle\Service\FileUploader;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class AddTrickController extends Controller
+class AddTrickController extends AbstractController
 {
 
 
@@ -52,6 +52,6 @@ class AddTrickController extends Controller
             return $this->redirectToRoute('index');
         }
 
-        return $this->render('default/new.html.twig', ['form' => $form->createView()]);
+        return $this->render('views/default/new.html.twig', ['form' => $form->createView()]);
     }
 }
