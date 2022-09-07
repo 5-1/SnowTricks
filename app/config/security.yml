@@ -38,6 +38,7 @@ security:
                 path: security_logout
                 target: index
 
+
             # activate different ways to authenticate
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
