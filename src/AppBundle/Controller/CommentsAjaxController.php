@@ -4,7 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Comment;
 use AppBundle\Entity\Trick;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
  * Class DefaultController
  * @package AppBundle\Controller
  */
-class CommentsAjaxController extends Controller
+class CommentsAjaxController extends AbstractController
 {
     /**
      * @Route("/ajax_comment/{id}", name="comments_more", methods={"POST"})

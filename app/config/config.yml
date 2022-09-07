@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: fr_FR
     image_directory: '%kernel.project_dir%/web/uploads/image'
+    container.autowiring.strict_mode: true
 
 framework:
     #esi: ~
@@ -32,11 +33,13 @@ framework:
     php_errors:
         log: true
 
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes: ['bootstrap_3_layout.html.twig', 'form/formTheme.html.twig']
+    form_themes: ['bootstrap_3_layout.html.twig', 'views/form/formTheme.html.twig']
+    exception_controller: null
 
 # Doctrine Configuration
 doctrine:
@@ -51,7 +54,7 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
-        naming_strategy: doctrine.orm.naming_strategy.underscore
+        naming_strategy: doctrine.orm.naming_strategy.underscore_number_aware
         auto_mapping: true
 
 # Swiftmailer Configuration
@@ -61,3 +64,7 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+sensio_framework_extra:
+    router:
+        annotations: false

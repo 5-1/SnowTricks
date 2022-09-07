@@ -13,7 +13,7 @@ use AppBundle\Form\EmailType;
 use AppBundle\Form\ResetPasswordType;
 use AppBundle\Mailer\SendMailer;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +21,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
-class ResetPasswordController extends Controller
+class ResetPasswordController extends AbstractController
 {
     /**
      * @var SendMailer
@@ -83,7 +83,7 @@ class ResetPasswordController extends Controller
         }
 
 
-        return $this->render('default/reset_form.html.twig', [
+        return $this->render('views/default/reset_form.html.twig', [
             'form' => $form->createView(),
         ]);
 
@@ -134,7 +134,7 @@ class ResetPasswordController extends Controller
 
         }
 
-        return $this->render('default/reset_password.html.twig', [
+        return $this->render('views/default/reset_password.html.twig', [
             'form' => $form->createView(),
         ]);
     }

@@ -6,12 +6,12 @@ use AppBundle\Entity\Trick;
 use AppBundle\Form\TrickEditType;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
 
-class EditTrickController extends Controller
+class EditTrickController extends AbstractController
 {
 
 
@@ -42,7 +42,7 @@ class EditTrickController extends Controller
         }
 
 
-        return $this->render('default/edit.html.twig', [
+        return $this->render('views/default/edit.html.twig', [
             'form' => $form->createView(),
         ]);
     }

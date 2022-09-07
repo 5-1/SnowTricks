@@ -10,14 +10,14 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use AppBundle\Mailer\SendMailer;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Twig\Environment;
 
-class ActivationController extends Controller
+class ActivationController extends AbstractController
 {
     /**
      * @var SendMailer
@@ -68,7 +68,7 @@ class ActivationController extends Controller
         $user->setActivated(1);
         $entityManager->flush();
 
-        return $this->render('default/activation.html.twig');
+        return $this->render('views/default/activation.html.twig');
 
 
     }
