@@ -1,0 +1,45 @@
+<header class="top-header" style="background: #2B3E51; position: relative;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-5 col-sm-4 header-logo">
+                <br>
+                <a href="{{ path('index') }}">
+                    <h1 class="snowslogan">SNOWTRICKS<span class="logo-head"></span></h1>
+                </a>
+            </div>
+
+            <div class="col-md-8 col-md-offset-1 col-xs-7">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid nav-bar">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="navbar-def" id="bs-example-navbar-collapse-1">
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item">
+                                    <a href="{{ path('index') }}"><i class="fa fa-home"></i> Accueil</a>
+                                </li class="nav-item">
+                                <li>
+                                    <a href="{{ path('index') }}"><i class="fa fa-tasks"></i> Tricks</a>
+                                </li>
+                                {% if not app.user %}
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_registration') }}"><i class="fa fa-user-plus"></i> Inscription</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_login') }}"><i class="fa fa-sign-in"></i> Connexion</a>
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_logout') }}"><i class="fa fa-sign-out"></i> Déconnexion</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div><!-- /navbar-collapse -->
+                    </div><!-- / .container-fluid -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>

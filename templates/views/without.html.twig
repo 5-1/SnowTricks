@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Snowtricks</title>
+
+
+    <!-- meta -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, user-scalable=no"/>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    <link href='https://fonts.googleapis.com/css?family=Raleway:500,300' rel='stylesheet' type='text/css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=PT+Sans'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:regular,bold"/>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="/web/assets/js/html5shiv.js"></script>
+    <script src="/web/assets/js/respond.js"></script>
+    <![endif]-->
+
+    <!--[if IE 8]>
+    <script src="/web/assets/js/selectivizr.js"></script>
+    <![endif]-->
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" media="screen"/>
+    {% endblock %}
+</head>
+<body>
+
+<header class="top-header">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 col-xs-5 col-sm-4 header-logo">
+                <br>
+                <a href="{{ path('index') }}">
+                    <h1 class="logo">Snowtricks <span class="logo-head"></span></h1>
+                </a>
+            </div>
+
+            <div class="col-md-8 col-md-offset-1 col-xs-7">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid nav-bar">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                    data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse navbar-def" id="bs-example-navbar-collapse-1">
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="nav-item">
+                                    <a href="{{ path('index') }}"><i class="fa fa-home"></i> Accueil</a>
+                                </li class="nav-item">
+                                <li>
+                                    <a href="{{ path('index') }}"><i class="fa fa-tasks"></i> Tricks</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ path('security_registration') }}"><i class="fa fa-bookmark"></i>
+                                        Inscription</a>
+                                </li>
+                                {% if not app.user %}
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_login') }}"><i class="fa fa-bookmark"></i> Connexion</a>
+
+                                    </li>
+                                {% else %}
+                                    <li class="nav-item">
+                                        <a href="{{ path('security_logout') }}"><i class="fa fa-bookmark"></i>
+                                            Déconnexion</a>
+
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div><!-- /navbar-collapse -->
+
+                    </div><!-- / .container-fluid -->
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div id="wrapper">
+    <br/>
+    <br>
+    <br/>
+    <br>
+
+    {% block body %}
+
+    {% endblock %}
+    <div class="content-block " id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 blog-post">
+
+                    <h2 class="footer-block">Une question?</h2>
+                    <p>Site communautaire de partage de figures du snowboard.</p>
+
+                    <p>Attention: Le contenu de ce site est fictif mais entièrement fonctionnel, il à été crée dans un
+                        but d'apprentisage.
+                    </p>
+                </div>
+                <div class="col-sm-4 blog-post">
+                    <h2 class="footer-block">Laissez nous un message</h2>
+                    <form action="contact-form.php" id="contactForm" method="post" name="contactform" class=""
+                          role="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-white" id="name" name="name"
+                                   placeholder="Nom" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control form-control-white" id="email" name="email"
+                                   placeholder="E-mail" required>
+                        </div>
+                        <div class="form-group">
+                                <textarea class="form-control form-control-white" id="message" name="massage"
+                                          placeholder="Ecrire quelque chose.." required></textarea>
+                        </div>
+                        <div id="contactFormResponse"></div>
+                        <div class="form-group">
+                            <input id="cfsubmit" type="submit" class="text-center btn btn-o-white"
+                                   value="Envoyé">
+                        </div>
+                    </form>
+                </div>
+                <div class="col-sm-4 blog-post">
+
+                    <h2 class="footer-block">Contact</h2>
+                    <ul>
+                        <li class="address-sub"><i class="fa fa-map-marker"></i>Addresse</li>
+                        <p>
+                            Blabla Parkway, P.o Box 353 Mountain View. United States of America.
+                        </p>
+                        <li class="address-sub"><i class="fa fa-phone"></i>Téléphone</li>
+                        <p>
+                            fix : 1-800-123-hello<br>
+                            Mobile: 1-800-123-hello
+                        </p>
+                        <li class="address-sub"><i class="fa fa-envelope-o"></i>E-mail</li>
+                        <p>
+                            <a href="mailto:info@themewagon.com">info@.com</a><br>
+                            <a href="http://www.themewagon.com/">http://foxmulder.odns.fr/</a>
+                        </p>
+
+
+                    </ul>
+                    <div class="social">
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <a href="#"><i class="fa fa-skype"></i></a>
+                    </div>
+
+                </div>
+            </div>
+            <div class="col-xs-6">&copy; Copyright <a href="http://www.foxmulder.odns.fr" target="_blink">Johan B.
+
+            </div>
+        </div>
+
+
+    </div><!--/#wrapper-->
+
+    {% block javascripts %}
+        <script src="{{ asset('assets/js/jquery-2.1.3.min.js') }}"></script>
+        <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.actual.min.js') }}"></script>
+        <script src="{{ asset('assets/js/jquery.scrollTo.min.js') }}"></script>
+        <script src="{{ asset('assets/js/contact.js') }}"></script>
+        <script src="{{ asset('assets/js/script.js') }}"></script>
+        <script src="{{ asset('assets/js/smoothscroll.js') }}"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function ($) {
+
+
+                $(window).scroll(function () {
+
+
+                    if ($(window).scrollTop() > 100) {
+
+                        $('.top-header').addClass('shows');
+
+                    } else {
+
+                        $('.top-header').removeClass('shows');
+
+                    }
+                    ;
+                });
+
+            });
+        </script>
+    {% endblock %}
+
+</body>
+</html>

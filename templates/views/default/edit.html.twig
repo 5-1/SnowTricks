@@ -1,0 +1,43 @@
+{% extends 'views/base.html.twig' %}
+
+{% block header %}
+    {% include 'views/includes/header.html.twig' %}
+{% endblock %}
+
+{% block body %}
+
+    <div class="content-block">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <h1 align="center" class="snow">MODIFICATION D'UN TRICKS</h1>
+
+                    <div class="box">
+                        {{ form_start(form) }}
+                        {{ form_row(form.title, {'attr': {'placeholder': "Titre du  tricks"}}) }}
+                        {{ form_row(form.category) }}
+                        {{ form_row(form.content, {'attr': {'placeholder': "Description du tricks"}}) }}
+                        <hr>
+                        <label>Images</label>
+                        {{ form_widget(form.images) }}
+                        <hr>
+                        <label>Videos</label>
+                        {{ form_widget(form.videos, {'attr': {'placeholder': "Lien Youtube du tricks"}}) }}
+                        <hr>
+
+                        <button type="submit" class="btn btn-success center-block"> Modifiez le tricks</button>
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/form-collection.js') }}"></script>
+{% endblock %}

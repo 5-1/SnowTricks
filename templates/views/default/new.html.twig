@@ -1,0 +1,49 @@
+{% extends 'views/base.html.twig' %}
+
+{% block header %}
+    {% include 'views/includes/header.html.twig' %}
+{% endblock %}
+
+
+{% block body %}
+    <div class="content-block">
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <h1 align="center" class="snow">AJOUT D'UN TRICKS</h1>
+
+                    {% if app.user %}
+
+                    <div class="box">
+                        {{ form_start(form) }}
+                        {{ form_row(form.title, {'attr': {'placeholder': "Titre du  tricks"}}) }}
+                        <hr>
+                        {{ form_row(form.videos, {'attr': {'placeholder': "Lien Youtube ou Dailymotion du tricks"}}) }}
+                        <hr>
+                        {{ form_row(form.category) }}
+                        {{ form_row(form.content, {'attr': {'placeholder': "Description du tricks"}}) }}
+                        <hr>
+                        {{ form_row(form.images) }}
+                        <hr>
+
+                        <button type="submit" class="btn btn-success center-block"> Ajouter le tricks</button>
+                        {{ form_end(form) }}
+                        {% else %}
+                        <p> vous devez vous connecter pour ajouter une figure ... d'ailleurs, comment êtes-vous arriver ici?</p>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/form-collection.js') }}"></script>
+{% endblock %}
